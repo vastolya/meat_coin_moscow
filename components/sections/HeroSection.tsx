@@ -3,9 +3,9 @@ import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import Button from "@/components/ui/Button";
 import GridSection from "@/components/ui/GridSection";
 import H1Title from "@/components/ui/H1Title";
-import privateDiningTableImage from "@/public/hero-private-dining-table.png";
-import terraceEntranceImage from "@/public/hero-terrace-entrance.png";
-import wineRoomSeatingImage from "@/public/hero-wine-room-seating.png";
+import privateDiningTableImage from "@/public/hero-private-dining-table.webp";
+import terraceEntranceImage from "@/public/hero-terrace-entrance.webp";
+import wineRoomSeatingImage from "@/public/hero-wine-room-seating.webp";
 import Image from "next/image";
 
 export default function HeroSection() {
@@ -29,12 +29,12 @@ function DesktopHeroSection() {
           <Button
             text="Меню"
             variant="secondary"
-            className="w-fit! border-[1.5px] border-(--color-accent) py-4 text-center text-[16px] leading-[150%] text-white"
+            className="w-fit! border-[1.5px] border-(--color-accent) py-4 text-center text-base leading-[150%] text-white"
           />
           <Button
             text="Забронировать стол"
             variant="primary"
-            className="w-fit! border-[1.5px] border-(--color-accent) py-4 text-center text-[16px] leading-[150%] text-white"
+            className="w-fit! border-[1.5px] border-(--color-accent) py-4 text-center text-base leading-[150%] text-white"
           />
         </AnimatedDiv>
       </div>

@@ -1,4 +1,4 @@
-import union from "/public/ornament-union.png";
+import union from "/public/ornament-union.webp";
 import { clsx } from "clsx";
 import Image from "next/image";
 

@@ -5,7 +5,7 @@ import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import GridSection from "@/components/ui/GridSection";
 import H1Title from "@/components/ui/H1Title";
 import Paragraph from "@/components/ui/Paragraph";
-import heroSteakTerraceMobileImage from "@/public/hero-steak-terrace-mobile.jpg";
+import heroSteakTerraceMobileImage from "@/public/hero-steak-terrace-mobile.webp";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import { useRef } from "react";

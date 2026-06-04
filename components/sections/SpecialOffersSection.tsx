@@ -2,7 +2,7 @@ import H2Title from "@/components/ui/H2Title";
 import H3Title from "@/components/ui/H3Title";
 import Paragraph from "@/components/ui/Paragraph";
 import Tag from "@/components/ui/Tag";
-import specialOfferGalaDinner from "@/public/special-offer-gala-dinner.png";
+import specialOfferGalaDinner from "@/public/special-offer-gala-dinner.webp";
 import Image from "next/image";
 import Link from "next/link";
 import ArrowIcon from "../icons/ArrowIcon";

@@ -2,7 +2,7 @@ import Button from "@/components/ui/Button";
 import H2Title from "@/components/ui/H2Title";
 import H3Title from "@/components/ui/H3Title";
 import Paragraph from "@/components/ui/Paragraph";
-import reservationImage from "@/public/reservation.jpg";
+import reservationImage from "@/public/reservation.webp";
 import Image from "next/image";
 import GridSection from "../ui/GridSection";
 

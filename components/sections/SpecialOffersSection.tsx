@@ -117,7 +117,7 @@ function BookingSideOverlay({
       {offer && (
         <div className="flex min-h-[calc(100dvh-3.25rem)] flex-col pt-6 md:min-h-[calc(100dvh-9rem)] md:pt-0">
           <div>
-            <H2Title className="mb-4">{offer.title}</H2Title>
+            <H2Title className="mb-4" disableAnimation>{offer.title}</H2Title>
 
             <Paragraph className="text-gray mb-2" disableAnimation>
               {offer.descriptionLabel}

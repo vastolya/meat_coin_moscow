@@ -11,16 +11,23 @@ type H1TitleProps = {
   children: React.ReactNode;
   delay?: AnimationDelay;
   className?: string;
+  disableAnimation?: boolean;
 };
 
-const H1Title = ({ children, delay = 0, className }: H1TitleProps) => {
+const H1Title = ({
+  children,
+  delay = 0,
+  className,
+  disableAnimation = false,
+}: H1TitleProps) => {
   const resolvedDelay = useResolvedDelay(delay);
 
   return (
     <motion.h1
-      initial={{ x: 40, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true }}
+      initial={disableAnimation ? false : { x: 40, opacity: 0 }}
+      {...(disableAnimation
+        ? { animate: { x: 0, opacity: 1 } }
+        : { whileInView: { x: 0, opacity: 1 }, viewport: { once: true } })}
       transition={{
         type: "spring",
         stiffness: 80,

@@ -37,13 +37,6 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
-  const prevPathname = useRef<string | null>(null);
-  const prevHadUnderline = nav_menu.some(
-    (i) => !i.dropdown && i.link === prevPathname.current,
-  );
-  useEffect(() => {
-    prevPathname.current = pathname;
-  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -151,11 +144,7 @@ const Header = () => {
                             layoutId="nav-underline"
                             className="bg-accent absolute right-0 left-0 h-1"
                             style={{ top: "calc(100% + 16px)" }}
-                            initial={
-                              prevHadUnderline
-                                ? false
-                                : { clipPath: "inset(0 100% 0 0)" }
-                            }
+                            initial={false}
                             animate={{ clipPath: "inset(0 0% 0 0)" }}
                             transition={{
                               layout: {

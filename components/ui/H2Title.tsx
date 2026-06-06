@@ -11,16 +11,23 @@ type H2TitleProps = {
   children: React.ReactNode;
   delay?: AnimationDelay;
   className?: string;
+  disableAnimation?: boolean;
 };
 
-const H2Title = ({ children, className, delay = 0 }: H2TitleProps) => {
+const H2Title = ({
+  children,
+  className,
+  delay = 0,
+  disableAnimation = false,
+}: H2TitleProps) => {
   const resolvedDelay = useResolvedDelay(delay);
 
   return (
     <motion.h2
-      initial={{ x: 40, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      viewport={{ once: true }}
+      initial={disableAnimation ? false : { x: 40, opacity: 0 }}
+      {...(disableAnimation
+        ? { animate: { x: 0, opacity: 1 } }
+        : { whileInView: { x: 0, opacity: 1 }, viewport: { once: true } })}
       transition={{
         type: "spring",
         stiffness: 80,

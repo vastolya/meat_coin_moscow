@@ -4,13 +4,13 @@ import {
   type AnimationDelay,
   useResolvedDelay,
 } from "@/components/hooks/useResolvedDelay";
-import { motion } from "framer-motion";
+import { motion, TargetAndTransition } from "framer-motion";
 
 interface ParagraphProps {
   children: React.ReactNode;
   className?: string;
   delay?: AnimationDelay;
-  animate?: import("framer-motion").TargetAndTransition;
+  animate?: TargetAndTransition;
   disableAnimation?: boolean;
 }
 

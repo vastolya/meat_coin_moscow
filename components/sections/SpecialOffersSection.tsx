@@ -132,7 +132,7 @@ function BookingSideOverlay({
             className="mt-16 flex flex-1 flex-col justify-end md:mt-63"
             onSubmit={handleSubmit}
           >
-            <div className="mb-11 flex flex-col gap-7 md:flex-row md:items-end md:justify-between md:gap-10">
+            <div className="mb-11 md:mb-7 flex flex-col gap-7 md:flex-row md:items-end md:justify-between md:gap-10">
               <BookingDateLabel value={offer.bookingDate} />
 
               <div className="bg-beige relative w-fit self-start rounded-sm px-4 py-4 md:self-auto">
@@ -145,7 +145,7 @@ function BookingSideOverlay({
               </div>
             </div>
 
-            <div className="mb-9 flex flex-col gap-7">
+            <div className="mb-9 flex flex-col gap-5">
               <FormInput name="name" type="text" placeholder="Имя" />
               <FormInput name="phone" type="tel" placeholder="Телефон" />
             </div>
@@ -153,7 +153,7 @@ function BookingSideOverlay({
             <Button
               text="Оставить заявку"
               type="submit"
-              className="mb-3 w-full"
+              className="mb-2 w-full"
             />
 
             <Checkbox

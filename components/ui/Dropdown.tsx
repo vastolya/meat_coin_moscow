@@ -1,17 +1,18 @@
-'use client'
+"use client";
 
-import { ReactNode } from 'react'
+import clsx from "clsx";
+import { ReactNode } from "react";
 
 interface DropdownProps {
-  isOpen: boolean
-  onToggle: () => void
-  trigger: ReactNode
-  children: ReactNode
-  className?: string
-  buttonClassName?: string
-  contentClassName?: string
-  iconClassName?: string
-  iconColor?: string
+  isOpen: boolean;
+  onToggle: () => void;
+  trigger: ReactNode;
+  children: ReactNode;
+  className?: string;
+  buttonClassName?: string;
+  contentClassName?: string;
+  iconClassName?: string;
+  iconColor?: string;
 }
 
 const Dropdown = ({
@@ -19,24 +20,30 @@ const Dropdown = ({
   onToggle,
   trigger,
   children,
-  className = '',
-  buttonClassName = '',
-  contentClassName = '',
-  iconClassName = '',
-  iconColor = '#81807D',
+  className = "",
+  buttonClassName = "",
+  contentClassName = "",
+  iconClassName = "",
+  iconColor = "#81807D",
 }: DropdownProps) => {
   return (
     <div className={className}>
-      <button type="button" className={buttonClassName} onClick={onToggle} aria-expanded={isOpen}>
+      <button
+        type="button"
+        className={buttonClassName}
+        onClick={onToggle}
+        aria-expanded={isOpen}
+      >
         {trigger}
         <span
-          className={`inline-flex h-6 w-6 origin-center items-center justify-center transition-transform duration-300 ease-out ${
-            isOpen ? 'rotate-180' : 'rotate-0'
-          }`}
+          className={clsx(
+            "inline-flex h-6 w-6 origin-center items-center justify-center transition-transform duration-300 ease-out",
+            isOpen ? "rotate-180" : "rotate-0",
+          )}
           aria-hidden="true"
         >
           <span
-            className={`block h-6 w-6 ${iconClassName}`}
+            className={clsx("block h-6 w-6", iconClassName)}
             style={{
               backgroundColor: iconColor,
               mask: "url('/dropdown.svg') center / contain no-repeat",
@@ -47,9 +54,10 @@ const Dropdown = ({
       </button>
 
       <div
-        className={`grid transition-[grid-template-rows,opacity] duration-1000 ease-out ${
-          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-        }`}
+        className={clsx(
+          "grid transition-[grid-template-rows,opacity] duration-1000 ease-out",
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+        )}
         aria-hidden={!isOpen}
       >
         <div className="min-h-0 overflow-hidden">
@@ -57,7 +65,7 @@ const Dropdown = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dropdown
+export default Dropdown;

@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useState } from "react";
 
 interface CheckboxProps {
@@ -11,7 +12,7 @@ export default function Checkbox({ label, className = "" }: CheckboxProps) {
   const [checked, setChecked] = useState(false);
 
   return (
-    <label className={`flex cursor-pointer items-start gap-4 ${className}`}>
+    <label className={clsx("flex cursor-pointer items-start gap-2", className)}>
       <input
         type="checkbox"
         checked={checked}
@@ -19,9 +20,10 @@ export default function Checkbox({ label, className = "" }: CheckboxProps) {
         className="peer sr-only"
       />
       <span
-        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors duration-300 peer-focus-visible:ring-2 peer-focus-visible:ring-(--color-accent) peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white ${
-          checked ? "bg-(--color-accent)" : "bg-[#BBB6AF]"
-        }`}
+        className={clsx(
+          "flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors duration-300 peer-focus-visible:ring-2 peer-focus-visible:ring-(--color-accent) peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white",
+          checked ? "bg-(--color-accent)" : "bg-[#BBB6AF]",
+        )}
         aria-hidden="true"
       >
         {checked ? (

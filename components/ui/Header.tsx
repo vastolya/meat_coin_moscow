@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -115,7 +116,10 @@ const Header = () => {
                       >
                         {i.title}
                         <span
-                          className={`inline-flex h-6 w-6 origin-center items-center justify-center transition-transform duration-300 ease-out ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
+                          className={clsx(
+                            "inline-flex h-6 w-6 origin-center items-center justify-center transition-transform duration-300 ease-out",
+                            isDropdownOpen ? "rotate-180" : "rotate-0",
+                          )}
                           aria-hidden="true"
                         >
                           <span
@@ -134,11 +138,12 @@ const Header = () => {
                     <motion.div key={i.title} {...slideIn(0.25 + idx * 0.07)}>
                       <Link
                         href={i.link!}
-                        className={`relative px-4 text-sm leading-[146%] tracking-normal whitespace-nowrap transition-colors duration-300 ${
+                        className={clsx(
+                          "relative px-4 text-sm leading-[146%] tracking-normal whitespace-nowrap transition-colors duration-300",
                           pathname === i.link
                             ? "text-accent"
-                            : "hover:text-accent"
-                        }`}
+                            : "hover:text-accent",
+                        )}
                       >
                         {i.title}
                         {pathname === i.link && (
@@ -172,7 +177,10 @@ const Header = () => {
             <motion.button
               {...slideIn(0)}
               type="button"
-              className={`burger-menu inline-flex md:hidden ${isMenuOpen ? "active" : ""}`}
+              className={clsx(
+                "burger-menu inline-flex md:hidden",
+                isMenuOpen && "active",
+              )}
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
               aria-expanded={isMenuOpen}

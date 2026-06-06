@@ -5,10 +5,10 @@ import H3Title from "@/components/ui/H3Title";
 import Paragraph from "@/components/ui/Paragraph";
 import Tag from "@/components/ui/Tag";
 import specialOfferGalaDinner from "@/public/special-offer-gala-dinner.webp";
-import Image from "next/image";
 import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import ArrowIcon from "../icons/ArrowIcon";
+import AnimatedImage from "../ui/AnimatedImage";
 import Button from "../ui/Button";
 import Checkbox from "../ui/Checkbox";
 import FormInput from "../ui/FormInput";
@@ -117,7 +117,9 @@ function BookingSideOverlay({
       {offer && (
         <div className="flex min-h-[calc(100dvh-3.25rem)] flex-col pt-6 md:min-h-[calc(100dvh-9rem)] md:pt-0">
           <div>
-            <H2Title className="mb-4" disableAnimation>{offer.title}</H2Title>
+            <H2Title className="mb-4" disableAnimation>
+              {offer.title}
+            </H2Title>
 
             <Paragraph className="text-gray mb-2" disableAnimation>
               {offer.descriptionLabel}
@@ -132,7 +134,7 @@ function BookingSideOverlay({
             className="mt-16 flex flex-1 flex-col justify-end md:mt-63"
             onSubmit={handleSubmit}
           >
-            <div className="mb-11 md:mb-7 flex flex-col gap-7 md:flex-row md:items-end md:justify-between md:gap-10">
+            <div className="mb-11 flex flex-col gap-7 md:mb-7 md:flex-row md:items-end md:justify-between md:gap-10">
               <BookingDateLabel value={offer.bookingDate} />
 
               <div className="bg-beige relative w-fit self-start rounded-sm px-4 py-4 md:self-auto">
@@ -207,9 +209,12 @@ function SpecialOfferCard({
 }) {
   return (
     <article className="contents border-b border-(--color-devider) py-4 md:pt-0 md:pb-4">
-      <div className="col-span-5 mb-4 overflow-hidden rounded-sm md:col-span-3 md:mb-0 md:w-75">
-        <Image src={offer.imageSrc} alt={offer.imageAlt} className="md:w-75" />
-      </div>
+      <AnimatedImage
+        src={offer.imageSrc}
+        alt={offer.imageAlt}
+        delay={0.2}
+        className="col-span-5 mb-4 h-86 w-86 overflow-hidden rounded-sm md:col-span-3 md:mb-0 md:h-75 md:w-75"
+      />
 
       <div className="col-span-5 md:col-span-3 md:col-start-5 md:flex md:flex-col md:items-start">
         <H3Title className="mb-2 md:mb-2">{offer.title}</H3Title>
@@ -245,19 +250,19 @@ export default function SpecialOffersSection() {
   return (
     <>
       <GridSection className="mt-12 mb-12 md:mt-30 md:mb-0 md:px-20">
-        <Paragraph className="text-gray col-span-5 mb-2 md:col-span-4">
+        <Paragraph delay={0.2} className="text-gray col-span-5 mb-2 md:col-span-4">
           Особые моменты
         </Paragraph>
 
         <div className="contents md:col-span-8 md:col-start-5 md:flex md:w-117.5 md:flex-col md:gap-2">
-          <H2Title className="col-span-5 mb-4 md:mb-2">Спецпредложения</H2Title>
+          <H2Title delay={0.2} className="col-span-5 mb-4 md:mb-2">Спецпредложения</H2Title>
 
-          <Paragraph className="col-span-5 mb-2">
+          <Paragraph delay={0.2} className="col-span-5 mb-2">
             Дегустационный сет «Загородный» — дает возможность за один вечер
             исследовать разные текстуры и техники
           </Paragraph>
 
-          <Paragraph className="col-span-5 mb-9 md:mb-18">
+          <Paragraph delay={0.2} className="col-span-5 mb-9 md:mb-18">
             Также мы проводим закрытые гастроужины,
             <br className="hidden md:block" /> где шеф представляет новые
             авторские позиции

@@ -121,7 +121,7 @@ export default function CuisineSection() {
         </Paragraph>
 
         <H2Title
-          delay={0.2}
+          delay={0.4}
           className="col-span-5 hidden text-(--color-dark-black) md:col-span-8 md:block"
         >
           Авторская кухня ресторана
@@ -132,23 +132,21 @@ export default function CuisineSection() {
           традиции мясников
         </H2Title>
 
-        <AnimatedDiv delay={0.2} className="hidden md:contents">
+        <AnimatedDiv delay={0.4} className="hidden md:contents">
           {desktopCuisineItems.map((item) => (
             <Fragment key={item.id}>
               <div className={clsx(`flex flex-col gap-2`, item.textClassName)}>
                 {item.title ? (
-                  <H3Title className="mb-2">{item.title}</H3Title>
+                  <H3Title delay={0.2} className="mb-2">{item.title}</H3Title>
                 ) : null}
                 {item.paragraphs?.map((paragraph) => (
-                  <Paragraph key={paragraph}>{paragraph}</Paragraph>
+                  <Paragraph delay={0.2}  key={paragraph}>{paragraph}</Paragraph>
                 ))}
               </div>
 
-              <Image
-                src={item.image}
-                alt="Кухня Meat_Coin"
-                className={item.imageClassName}
-              />
+              <AnimatedDiv delay={0.4} className={item.imageClassName}>
+                <Image src={item.image} alt="Кухня Meat_Coin" />
+              </AnimatedDiv>
             </Fragment>
           ))}
         </AnimatedDiv>

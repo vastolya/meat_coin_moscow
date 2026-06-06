@@ -113,19 +113,13 @@ function BookingSideOverlay({
       isOpen={isOpen}
       onClose={onClose}
       ariaLabel={offer ? `Запись на событие: ${offer.title}` : undefined}
-      className="md:pt-10"
     >
       {offer && (
-        <div className="flex flex-col pt-8 md:pt-2">
+        <div className="flex min-h-[calc(100dvh-3.25rem)] flex-col pt-6 md:min-h-[calc(100dvh-9rem)] md:pt-0">
           <div>
-            <H2Title className="mb-4">
-              {offer.title}
-            </H2Title>
+            <H2Title className="mb-4">{offer.title}</H2Title>
 
-            <Paragraph
-              className="mb-2 text-gray"
-              disableAnimation
-            >
+            <Paragraph className="text-gray mb-2" disableAnimation>
               {offer.descriptionLabel}
             </Paragraph>
 
@@ -141,8 +135,8 @@ function BookingSideOverlay({
             <div className="mb-11 flex flex-col gap-7 md:flex-row md:items-end md:justify-between md:gap-10">
               <BookingDateLabel value={offer.bookingDate} />
 
-              <div className="relative w-fit self-start rounded-sm bg-(--color-beige) px-4 py-4 md:self-auto">
-                <span className="absolute -top-6 left-1/2 -translate-x-1/2 rounded-sm border border-(--color-beige) bg-white px-2 py-1 text-base leading-none whitespace-nowrap text-(--color-accent)">
+              <div className="bg-beige relative w-fit self-start rounded-sm px-4 py-4 md:self-auto">
+                <span className="border-beige absolute -top-5 left-1/2 -translate-x-1/2 rounded-sm border bg-white px-2 py-1 text-base leading-none whitespace-nowrap text-(--color-accent)">
                   {offer.bookingSeats}
                 </span>
                 <span className="text-2xl leading-none font-extrabold whitespace-nowrap text-(--color-accent)">
@@ -163,7 +157,7 @@ function BookingSideOverlay({
             />
 
             <Checkbox
-              className="items-center"
+              className="items-center!"
               label={
                 <>
                   Вы соглашаетесь с нашими{" "}
@@ -251,7 +245,7 @@ export default function SpecialOffersSection() {
   return (
     <>
       <GridSection className="mt-12 mb-12 md:mt-30 md:mb-0 md:px-20">
-        <Paragraph className="col-span-5 mb-2 text-gray md:col-span-4">
+        <Paragraph className="text-gray col-span-5 mb-2 md:col-span-4">
           Особые моменты
         </Paragraph>
 

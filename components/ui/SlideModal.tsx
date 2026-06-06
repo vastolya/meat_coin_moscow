@@ -52,7 +52,7 @@ export default function SlideModal({
 
           <motion.div
             className={clsx(
-              'text-dark relative z-10 h-full w-full overflow-y-auto bg-white px-5 pt-5 pb-8 shadow-2xl md:w-[49vw] md:min-w-160 md:pt-10 md:pr-20 md:pb-18 md:pl-8',
+              'text-dark relative z-10 h-full w-full overflow-y-auto bg-white px-5 pt-5 pb-8 shadow-2xl md:w-[49vw] md:min-w-160 md:py-18 md:pr-20 md:pl-8',
               className,
             )}
             initial={{ x: '100%' }}
@@ -66,7 +66,7 @@ export default function SlideModal({
             <button
               type="button"
               onClick={onClose}
-              className="text-dark hover:text-accent flex w-full cursor-pointer justify-end transition-colors duration-300"
+              className="text-dark hover:text-accent absolute top-5 right-5 z-10 flex size-6 cursor-pointer items-center justify-center transition-colors duration-300 md:top-10 md:right-20"
               aria-label="Закрыть"
             >
               <div className="rotate-45">

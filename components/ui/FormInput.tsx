@@ -6,7 +6,7 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export default function FormInput({ rightSlot, className = '', ...props }: FormInputProps) {
   const base =
-    'placeholder:text-gray border-devider w-full border-b pt-1 pb-4 outline-none placeholder:text-base placeholder:leading-[148%] placeholder:font-medium placeholder:tracking-[0.01em]'
+    'placeholder:text-gray border-[#C2C2C0] text-[20px] w-full border-b pt-1 pb-4 outline-none placeholder:text-base placeholder:leading-[148%] placeholder:font-medium placeholder:tracking-[0.01em]'
   const noSpin =
     props.type === 'number'
       ? ' [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'

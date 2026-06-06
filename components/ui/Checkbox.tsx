@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 
 interface CheckboxProps {
-  label: React.ReactNode
-  className?: string
+  label: React.ReactNode;
+  className?: string;
 }
 
-export default function Checkbox({ label, className = '' }: CheckboxProps) {
-  const [checked, setChecked] = useState(false)
+export default function Checkbox({ label, className = "" }: CheckboxProps) {
+  const [checked, setChecked] = useState(false);
 
   return (
     <label className={`flex cursor-pointer items-start gap-4 ${className}`}>
@@ -16,25 +16,28 @@ export default function Checkbox({ label, className = '' }: CheckboxProps) {
         type="checkbox"
         checked={checked}
         onChange={() => setChecked(!checked)}
-        className="sr-only"
+        className="peer sr-only"
       />
       <span
-        className={` ${checked ? 'bg-nove' : 'bg-devider border-devider border'} flex h-9 w-9 shrink-0 items-center justify-center rounded-sm outline-none`}
+        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors duration-300 peer-focus-visible:ring-2 peer-focus-visible:ring-(--color-accent) peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-white ${
+          checked ? "bg-(--color-accent)" : "bg-[#BBB6AF]"
+        }`}
         aria-hidden="true"
       >
         {checked ? (
           <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
+            width="18"
+            height="14"
+            viewBox="0 0 18 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M4 0C1.79086 0 0 1.79086 0 4V16C0 18.2091 1.79086 20 4 20H16C18.2091 20 20 18.2091 20 16V4C20 1.79086 18.2091 0 16 0H4Z M10 5L15 10L10 15L5 10Z"
-              fill="#8D7E65"
+              d="M1 7L6.33333 12L17 1"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         ) : (
@@ -66,5 +69,5 @@ export default function Checkbox({ label, className = '' }: CheckboxProps) {
       </span>
       <span className="text-gray text-sm leading-[148%]">{label}</span>
     </label>
-  )
+  );
 }

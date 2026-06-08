@@ -7,6 +7,7 @@ import H3Title from "@/components/ui/H3Title";
 import Paragraph from "@/components/ui/Paragraph";
 import Tag from "@/components/ui/Tag";
 import Telegram from "@/components/ui/Telegram";
+import AnimatedDiv from "../ui/AnimatedDiv";
 import GridSection from "../ui/GridSection";
 
 const phone = "+7 499 283-19-11";
@@ -17,48 +18,64 @@ export default function ContactsSection() {
   return (
     <GridSection className="px-4 pt-0 pb-20 md:px-20 md:pt-16 md:pb-30">
       <div className="col-span-5 pb-13 md:col-span-8 md:col-start-5 md:pb-11">
-        <H2Title className="mb-2">Адрес и контакты</H2Title>
-        <Paragraph className="md:text-gray">
+        <H2Title delay={0.2} className="mb-2">
+          Адрес и контакты
+        </H2Title>
+        <Paragraph delay={0.3} className="md:text-gray">
           Стейк-хаус в Москве на 4 этаже бизнес-центра «Смоленский пассаж 2»
         </Paragraph>
       </div>
 
       <div className="col-span-5 mb-4 flex flex-col md:col-span-3 md:mb-0">
-        <H3Title className="mb-2">Steak & Terrace</H3Title>
-        <Tag variant="gray" className="mb-2">
+        <H3Title delay={0.4} className="mb-2">
+          Steak & Terrace
+        </H3Title>
+        <Tag delay={0.5} variant="gray" className="mb-2">
           Москва
         </Tag>
 
-        <Paragraph className="text-gray md:hidden">
+        <Paragraph delay={0.6} className="text-gray md:hidden">
           Бесплатный крытый паркинг
           <br /> для гостей
         </Paragraph>
       </div>
 
       <div className="col-span-5 mb-4 flex flex-col gap-1 md:col-span-8 md:col-start-5 md:mb-0">
-        <Paragraph className="text-gray mb-1">Адрес</Paragraph>
-        <Paragraph>Смоленская площадь • 5</Paragraph>
-        <Paragraph className="text-gray">
+        <Paragraph delay={0.6} className="text-gray mb-1">
+          Адрес
+        </Paragraph>
+        <Paragraph delay={0.7}>Смоленская площадь • 5</Paragraph>
+        <Paragraph delay={0.8} className="text-gray">
           (отдельный вход со стороны Николощеповского переулка)
         </Paragraph>
       </div>
 
       <div className="col-span-5 mb-4 flex flex-col gap-1 md:col-span-8 md:col-start-5 md:mb-0">
-        <Paragraph className="text-gray">Режим работы</Paragraph>
+        <Paragraph delay={0.9} className="text-gray">
+          Режим работы
+        </Paragraph>
         <div className="flex items-baseline gap-4">
-          <Paragraph>Ежедневно</Paragraph>
-          <H3Title>12:00-00:00</H3Title>
+          <Paragraph delay={1}>Ежедневно</Paragraph>
+          <H3Title delay={1.1}>12:00-00:00</H3Title>
         </div>
       </div>
 
-      <Paragraph className="md:text-gray hidden md:col-span-2 md:block">
+      <Paragraph
+        delay={1.2}
+        className="md:text-gray hidden md:col-span-2 md:block"
+      >
         Для гостей доступна бесплатная парковка
       </Paragraph>
 
       <div className="col-span-5 mb-4 flex flex-col items-center gap-2 md:col-span-8 md:col-start-5 md:flex-row md:gap-4">
-        <Button text="Оставить заявку" className="w-full md:w-61" />
+        <AnimatedDiv delay={1.3} className="w-full md:w-auto">
+          <Button text="Оставить заявку" className="w-full md:w-61" />
+        </AnimatedDiv>
 
-        <Paragraph className="text-accent my-2 flex w-full items-center justify-between gap-7 pr-4 md:w-64 md:justify-start">
+        <Paragraph
+          delay={1.4}
+          className="text-accent my-2 flex w-full items-center justify-between gap-7 pr-4 md:w-64 md:justify-start"
+        >
           <a href="tel:+74992831911">{phone}</a>
           <a href="mailto:info@meat-coin.ru" aria-label="Написать на почту">
             <MailIcon width={24} height={24} color="white" />
@@ -69,14 +86,16 @@ export default function ContactsSection() {
         </Paragraph>
       </div>
 
-      <iframe
-        src={moscowMapUrl}
-        width="100%"
-        height="100%"
-        className="relative left-1/2 col-span-5 h-105 w-screen -translate-x-1/2 border-0 md:col-span-12 md:h-119"
-        allowFullScreen
-        title="Карта Яндекса: Steak & Terrace"
-      />
+      <AnimatedDiv delay={1.5} className="col-span-5 md:col-span-12">
+        <iframe
+          src={moscowMapUrl}
+          width="100%"
+          height="100%"
+          className="relative left-1/2 h-105 w-screen -translate-x-1/2 border-0 md:h-119"
+          allowFullScreen
+          title="Карта Яндекса: Steak & Terrace"
+        />
+      </AnimatedDiv>
     </GridSection>
   );
 }

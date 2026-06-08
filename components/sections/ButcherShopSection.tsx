@@ -9,6 +9,7 @@ import butcherShopSpices from "@/public/butcher-shop-spices.webp";
 import butcherShopSteak from "@/public/butcher-shop-steak.webp";
 import butcherShopWagyu from "@/public/butcher-shop-wagyu.webp";
 import Image from "next/image";
+import AnimatedDiv from "../ui/AnimatedDiv";
 import GridSection from "../ui/GridSection";
 import H3Title from "../ui/H3Title";
 
@@ -50,12 +51,18 @@ const butcherPhotos = [
 export default function ButcherShopSection() {
   return (
     <GridSection className="-mx-4 px-4 py-12 md:py-30">
-      <H2Title className="order-1 col-span-5 mb-4 md:order-2 md:col-span-8 md:col-start-5 md:mb-18">
+      <H2Title
+        delay={0.3}
+        className="order-1 col-span-5 mb-4 md:order-2 md:col-span-8 md:col-start-5 md:mb-18"
+      >
         <span className="text-(--color-accent)">Мясная лавка</span> Выберите
         свой идеальный стейк
       </H2Title>
 
-      <Tag className="order-2 col-span-5 mb-7 self-start p-3! md:order-1 md:col-span-4 md:mb-0 md:p-4!">
+      <Tag
+        delay={0.2}
+        className="order-2 col-span-5 mb-7 self-start p-3! md:order-1 md:col-span-4 md:mb-0 md:p-4!"
+      >
         <span className="mr-1">Ежедневно</span>
         <span className="text-xl leading-[116%] font-extrabold md:text-2xl">
           12:00–23:00
@@ -63,43 +70,55 @@ export default function ButcherShopSection() {
       </Tag>
 
       <div className="order-3 col-span-5 md:col-span-5 md:col-start-5 md:w-120">
-        <H3Title className="mb-2 w-75 md:w-full">
+        <H3Title delay={0.4} className="mb-2 w-75 md:w-full">
           Мраморная говядина Прайм и Вагю
         </H3Title>
-        <Paragraph className="mb-7 text-sm text-(--color-gray)">
+        <Paragraph delay={0.5} className="mb-7 text-sm text-(--color-gray)">
           Для ценителей и гурманов
         </Paragraph>
 
-        <Paragraph className="md:mb-2 mb-4">
+        <Paragraph delay={0.6} className="mb-4 md:mb-2">
           В мясной лавке представлены отрубы
         </Paragraph>
 
         <div className="mb-4 flex flex-wrap gap-2 md:mb-2">
-          {cutTags.map((tag) => (
-            <Tag key={tag} text={tag} className="px-3! py-3!" />
+          {cutTags.map((tag, index) => (
+            <Tag
+              key={tag}
+              text={tag}
+              delay={0.7 + index * 0.08}
+              className="px-3! py-3!"
+            />
           ))}
         </div>
 
-        <Paragraph className="mb-9 w-77 md:mb-11 md:w-full">
+        <Paragraph delay={1.05} className="mb-9 w-77 md:mb-11 md:w-full">
           Наши мастера помогут выбрать мясо и нужную степень прожарки, чтобы ваш
           домашний опыт достиг ресторанного уровня
         </Paragraph>
 
-        <Button
-          text="Заказать с доставкой"
-          variant="secondary"
-          className="mb-9 w-full border-(--color-accent)! text-white hover:border-(--color-accent)! md:mb-18"
-        />
+        <AnimatedDiv delay={1.15} className="mb-9 md:mb-18">
+          <Button
+            text="Заказать с доставкой"
+            variant="secondary"
+            className="w-full border-(--color-accent)! text-white hover:border-(--color-accent)!"
+          />
+        </AnimatedDiv>
       </div>
 
       <div className="no-scrollbar order-4 col-span-5 -mr-4 flex snap-x snap-mandatory gap-2 overflow-x-auto md:col-span-12 md:-mx-20 md:mt-1 md:gap-7">
-        {butcherPhotos.map((photo) => (
-          <Image
+        {butcherPhotos.map((photo, index) => (
+          <AnimatedDiv
             key={photo.id}
-            src={photo.src}
-            alt={photo.alt}
-            className="h-72 w-72 rounded-sm object-cover md:h-85 md:w-85"
-          />
+            delay={1.3 + index * 0.08}
+            className="shrink-0 snap-center"
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              className="h-72 w-72 rounded-sm object-cover md:h-85 md:w-85"
+            />
+          </AnimatedDiv>
         ))}
       </div>
     </GridSection>

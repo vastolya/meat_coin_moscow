@@ -8,6 +8,7 @@ import spaceAestheticsTerracePanorama from "@/public/space-aesthetics-terrace-pa
 import spaceAestheticsTerraceTable from "@/public/space-aesthetics-terrace-table.webp";
 import spaceAestheticsTerraceWide from "@/public/space-aesthetics-terrace-wide.webp";
 import spaceAestheticsWindowTables from "@/public/space-aesthetics-window-tables.webp";
+import AnimatedDiv from "../ui/AnimatedDiv";
 import GridSection from "../ui/GridSection";
 
 const spaceSlides = [
@@ -51,31 +52,41 @@ const spaceSlides = [
 export default function SpaceAestheticsSection() {
   return (
     <GridSection className="-mx-4 px-4 pt-11 md:pt-30">
-      <H2Title className="col-span-5 mb-2 md:mb-7 md:col-start-5 md:col-span-8">
+      <H2Title
+        delay={0.2}
+        className="col-span-5 mb-2 md:col-span-8 md:col-start-5 md:mb-7"
+      >
         Эстетика пространства
       </H2Title>
 
-      <div className="col-span-5 mb-9 md:max-w-129.25 md:col-start-5 md:col-span-8">
-        <Paragraph className="mb-2">
+      <AnimatedDiv
+        delay={0.3}
+        className="col-span-5 mb-9 md:col-span-8 md:col-start-5 md:max-w-129.25"
+      >
+        <Paragraph delay={0.4} className="mb-2">
           Дизайн от бюро DA Bureau сочетает природные материалы, приглушенный
           свет и открытую кухню
         </Paragraph>
-        <Paragraph>
+        <Paragraph delay={0.5}>
           Главный акцент на панорамной террасе с видом на Садовое кольцо и
           здание МИД
         </Paragraph>
-      </div>
+      </AnimatedDiv>
 
-      <PhotoSlider
-        slides={spaceSlides}
-        useIntrinsicImageSize
-        scrollerClassName="md:items-end"
-        slideClassName="flex flex-col justify-end md:max-w-none"
-        indicatorsClassName="justify-start"
-        imgWrapperClassName="h-105 md:h-auto"
-        imgClassName="h-full md:h-(--slide-height)"
-        className="md:-mt-66 col-span-5 h-full md:col-span-12"
-      />
+      <AnimatedDiv
+        delay={0.6}
+        className="col-span-5 h-full md:col-span-12 md:-mt-66"
+      >
+        <PhotoSlider
+          slides={spaceSlides}
+          useIntrinsicImageSize
+          scrollerClassName="md:items-end"
+          slideClassName="flex flex-col justify-end md:max-w-none"
+          indicatorsClassName="justify-start"
+          imgWrapperClassName="h-105 md:h-auto"
+          imgClassName="h-full md:h-(--slide-height)"
+        />
+      </AnimatedDiv>
     </GridSection>
   );
 }

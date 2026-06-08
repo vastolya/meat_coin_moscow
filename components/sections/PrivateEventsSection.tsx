@@ -8,7 +8,8 @@ import privateEventsBanquetHall from "@/public/private-events-banquet-hall.webp"
 import privateEventsLounge from "@/public/private-events-lounge.webp";
 import privateEventsTerrace from "@/public/private-events-terrace.webp";
 import privateEventsVipTable from "@/public/private-events-vip-table.webp";
-import Image from "next/image";
+import AnimatedDiv from "../ui/AnimatedDiv";
+import AnimatedImage from "../ui/AnimatedImage";
 import GridSection from "../ui/GridSection";
 import H3Title from "../ui/H3Title";
 
@@ -39,68 +40,79 @@ const celebrationSlides = [
 export default function PrivateEventsSection() {
   return (
     <GridSection className="pb-12 md:pt-30 md:pb-0">
-      <Paragraph className="col-span-5 mb-2 text-(--color-gray) md:col-span-4 md:mb-0 md:w-102">
+      <Paragraph
+        delay={0.2}
+        className="col-span-5 mb-2 text-(--color-gray) md:col-span-4 md:mb-0 md:w-102"
+      >
         Проведение приватных мероприятий
       </Paragraph>
 
-      <H2Title className="col-span-5 mb-9 md:col-span-8 md:mb-11">
+      <H2Title delay={0.3} className="col-span-5 mb-9 md:col-span-8 md:mb-11">
         Место для вашего праздника
       </H2Title>
 
-      <Image
+      <AnimatedImage
         src={privateEventsArchedHall}
         alt="Приватный зал Meat_Coin для камерных мероприятий"
-        className="col-span-5 mb-9 h-full w-full object-cover md:col-span-4 md:mb-0"
+        className="col-span-5 mb-9 h-225 w-102 md:col-span-4 md:mb-0"
+        delay={0.4}
       />
 
       <div className="col-span-5 flex flex-col md:col-span-8">
-        <H3Title className="mb-4 md:w-129.25">
+        <H3Title delay={0.5} className="mb-4 md:w-129.25">
           Для тех, кто ценит уединение имеется отдельный зал
         </H3Title>
 
         <div className="mb-7 flex flex-wrap items-center gap-4 md:mb-11">
           <Tag
+            delay={0.6}
             variant="black"
             className="gap-1.5 p-3! text-(--color-beige) md:p-4!"
           >
-            <Paragraph>На</Paragraph>
+            <Paragraph disableAnimation>На</Paragraph>
             <span className="text-2xl leading-[116%] font-extrabold tracking-normal">
               25
             </span>
-            <Paragraph>гостей</Paragraph>
+            <Paragraph disableAnimation>гостей</Paragraph>
           </Tag>
 
-          <Paragraph>С камином, личной террасой и санузлом</Paragraph>
+          <Paragraph delay={0.7}>
+            С камином, личной террасой и санузлом
+          </Paragraph>
         </div>
 
-        <H3Title className="mb-4 md:mb-7 md:w-80">
+        <H3Title delay={0.8} className="mb-4 md:mb-7 md:w-80">
           Пространство создано для празднования
         </H3Title>
 
         <div className="flex flex-wrap gap-2">
-          {eventTags.map((tag) => (
+          {eventTags.map((tag, index) => (
             <Tag
               key={tag}
               text={tag}
+              delay={0.9 + index * 0.08}
               variant="black"
               className="p-3! text-base leading-none font-medium"
             />
           ))}
         </div>
 
-        <Button
-          text="Забронировать вип-зал"
-          className="mt-7 mb-9 w-full py-5 text-center md:mt-18 md:mb-0"
-        />
+        <AnimatedDiv delay={1.2} className="mt-7 mb-9 md:mt-18 md:mb-0">
+          <Button
+            text="Забронировать вип-зал"
+            className="w-full py-5 text-center"
+          />
+        </AnimatedDiv>
       </div>
 
-      <PhotoSlider
-        slides={celebrationSlides}
-        className="col-span-5 md:col-span-12 md:mt-4"
-        slideClassName="max-w-none"
-        imgClassName="h-[300px] md:h-[720px]"
-        indicatorsClassName="justify-start pl-4 md:pl-0"
-      />
+      <AnimatedDiv className="col-span-5 md:col-span-12 md:mt-4" delay={1.3}>
+        <PhotoSlider
+          slides={celebrationSlides}
+          slideClassName="max-w-none"
+          imgClassName="h-[300px] md:h-[720px]"
+          indicatorsClassName="justify-start pl-4 md:pl-0"
+        />
+      </AnimatedDiv>
     </GridSection>
   );
 }

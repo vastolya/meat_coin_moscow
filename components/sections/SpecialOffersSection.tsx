@@ -8,6 +8,7 @@ import specialOfferGalaDinner from "@/public/special-offer-gala-dinner.webp";
 import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import ArrowIcon from "../icons/ArrowIcon";
+import AnimatedDiv from "../ui/AnimatedDiv";
 import AnimatedImage from "../ui/AnimatedImage";
 import Button from "../ui/Button";
 import Checkbox from "../ui/Checkbox";
@@ -202,31 +203,45 @@ function BookingDateLabel({ value }: { value: string }) {
 
 function SpecialOfferCard({
   offer,
+  index,
   onSignupClick,
 }: {
   offer: SpecialOffer;
+  index: number;
   onSignupClick: () => void;
 }) {
+  const baseDelay = 0.2 + index * 0.12;
+
   return (
     <article className="contents border-b border-(--color-devider) py-4 md:pt-0 md:pb-4">
       <AnimatedImage
         src={offer.imageSrc}
         alt={offer.imageAlt}
-        delay={0.2}
+        delay={baseDelay}
         className="col-span-5 mb-4 h-86 w-86 overflow-hidden rounded-sm md:col-span-3 md:mb-0 md:h-75 md:w-75"
       />
 
       <div className="col-span-5 md:col-span-3 md:col-start-5 md:flex md:flex-col md:items-start">
-        <H3Title className="mb-2 md:mb-2">{offer.title}</H3Title>
-        <Tag text={offer.date} variant="gray" className="mb-7 md:mb-0" />
+        <H3Title delay={baseDelay + 0.05} className="mb-2 md:mb-2">
+          {offer.title}
+        </H3Title>
+        <AnimatedDiv delay={baseDelay + 0.1} className="mb-7 md:mb-0">
+          <Tag text={offer.date} variant="gray" />
+        </AnimatedDiv>
       </div>
 
       <div className="col-span-5 md:col-span-4 md:col-start-9 md:flex md:flex-col md:items-start">
-        <Paragraph className="hidden text-(--color-gray) md:mb-2 md:block">
+        <Paragraph
+          delay={baseDelay + 0.1}
+          className="hidden text-(--color-gray) md:mb-2 md:block"
+        >
           {offer.descriptionLabel}
         </Paragraph>
 
-        <Paragraph className="hidden md:mb-7 md:block md:max-w-97.25">
+        <Paragraph
+          delay={baseDelay + 0.15}
+          className="hidden md:mb-7 md:block md:max-w-97.25"
+        >
           {offer.description}
         </Paragraph>
 
@@ -235,7 +250,10 @@ function SpecialOfferCard({
           onClick={onSignupClick}
           className="cursor-pointer"
         >
-          <Paragraph className="flex items-center gap-2 text-(--color-accent) transition-colors duration-300 hover:text-white">
+          <Paragraph
+            delay={baseDelay + 0.2}
+            className="flex items-center gap-2 text-(--color-accent) transition-colors duration-300 hover:text-white"
+          >
             Записаться <ArrowIcon />
           </Paragraph>
         </button>
@@ -250,12 +268,17 @@ export default function SpecialOffersSection() {
   return (
     <>
       <GridSection className="mt-12 mb-12 md:mt-30 md:mb-0 md:px-20">
-        <Paragraph delay={0.2} className="text-gray col-span-5 mb-2 md:col-span-4">
+        <Paragraph
+          delay={0.2}
+          className="text-gray col-span-5 mb-2 md:col-span-4"
+        >
           Особые моменты
         </Paragraph>
 
         <div className="contents md:col-span-8 md:col-start-5 md:flex md:w-117.5 md:flex-col md:gap-2">
-          <H2Title delay={0.2} className="col-span-5 mb-4 md:mb-2">Спецпредложения</H2Title>
+          <H2Title delay={0.2} className="col-span-5 mb-4 md:mb-2">
+            Спецпредложения
+          </H2Title>
 
           <Paragraph delay={0.2} className="col-span-5 mb-2">
             Дегустационный сет «Загородный» — дает возможность за один вечер
@@ -269,24 +292,28 @@ export default function SpecialOffersSection() {
           </Paragraph>
         </div>
 
-        {specialOffers.map((offer) => (
+        {specialOffers.map((offer, index) => (
           <SpecialOfferCard
             key={offer.id}
             offer={offer}
+            index={index}
             onSignupClick={() => setSelectedOffer(offer)}
           />
         ))}
 
-        <div className="md:items-cente col-span-5 mt-9 flex flex-col gap-2 md:col-span-8 md:col-start-5 md:mt-18 md:flex-row md:justify-center md:gap-4">
+        <AnimatedDiv
+          delay={0.2}
+          className="md:items-cente col-span-5 mt-9 flex flex-col gap-2 md:col-span-8 md:col-start-5 md:mt-18 md:flex-row md:justify-center md:gap-4"
+        >
           <Button
             text="Все события"
             variant="secondary"
             className="w-full text-white md:w-102"
           />
-          <Paragraph className="text-gray md:w-75">
+          <Paragraph disableAnimation className="text-gray md:w-75">
             Информация о ближайших событиях появится здесь
           </Paragraph>
-        </div>
+        </AnimatedDiv>
       </GridSection>
 
       <BookingSideOverlay

@@ -10,8 +10,10 @@ export type PhotoSlide = {
   id?: string;
   src: StaticImageData;
   alt: string;
+  badge?: string;
   title?: string;
   description?: string;
+  descriptionClassName?: string;
   description2?: string;
 };
 
@@ -123,7 +125,7 @@ const PhotoSlider = ({
           >
             <div
               className={clsx(
-                "overflow-hidden rounded-sm",
+                "relative overflow-hidden rounded-sm",
                 imgWrapperClassName,
               )}
             >
@@ -137,6 +139,11 @@ const PhotoSlider = ({
                   imgClassName,
                 )}
               />
+              {slide.badge ? (
+                <span className="absolute inset-x-4 bottom-4 rounded-sm bg-(--color-dark-black)/35 px-4 py-3 text-center text-xl leading-[118%] font-bold text-white backdrop-blur-md">
+                  {slide.badge}
+                </span>
+              ) : null}
             </div>
             {slide.title ? (
               <H3Title className="mt-2 text-(--color-grey-black) md:text-xl md:leading-[118%] md:font-bold">
@@ -148,6 +155,7 @@ const PhotoSlider = ({
                 className={clsx(
                   slide.title ? "mt-2" : "mt-4",
                   "text-dark-black/78 tracking-[0%]",
+                  slide.descriptionClassName,
                 )}
               >
                 {slide.description}

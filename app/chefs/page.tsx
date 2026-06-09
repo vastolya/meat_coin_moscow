@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ChefsIntroSection from "@/components/sections/ChefsIntroSection";
 import ChefsPathSection from "@/components/sections/ChefsPathSection";
+import ChefSignatureDishesSection from "@/components/sections/ChefSignatureDishesSection";
 
 export const metadata: Metadata = {
   title: "Шефы | Meat_Coin",
@@ -11,6 +12,7 @@ export default function ChefsPage() {
     <main className="text-dark">
       <ChefsIntroSection />
       <ChefsPathSection />
+      <ChefSignatureDishesSection />
     </main>
   );
 }

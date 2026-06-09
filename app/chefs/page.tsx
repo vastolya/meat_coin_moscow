@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ChefsPage() {
   return (
-    <main className="text-dark">
+    <main className="text-dark bg-white">
       <ChefsIntroSection />
       <ChefsPathSection />
       <ChefSignatureDishesSection />

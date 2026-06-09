@@ -172,22 +172,23 @@ const desktopSignatureItems: Array<{
 export default function ChefSignatureDishesSection() {
   return (
     <div className="bg-beige">
-      <GridSection className="rounded-t-[60px] bg-white py-12 md:rounded-t-[128px] md:py-30">
-        <AnimatedDiv
-          delay={0.2}
-          className="order-8 col-span-5 mt-7 flex flex-row gap-2 md:order-0 md:col-span-4 md:mt-0"
-        >
-          <Button
-            text="Меню"
-            variant="secondary"
-            className="h-14! flex-1 px-3! whitespace-nowrap md:w-fit md:flex-none md:px-6!"
-          />
-          <Button
-            text="Винная карта"
-            variant="secondary"
-            className="h-14! flex-1 px-3! whitespace-nowrap md:w-fit md:flex-none md:px-6!"
-          />
-        </AnimatedDiv>
+      <div className="rounded-t-[60px] bg-white md:rounded-t-[128px]">
+        <GridSection className="py-12 md:py-30">
+          <AnimatedDiv
+            delay={0.2}
+            className="order-8 col-span-5 mt-7 flex flex-row gap-2 md:order-0 md:col-span-4 md:mt-0"
+          >
+            <Button
+              text="Меню"
+              variant="secondary"
+              className="h-14! flex-1 px-3! whitespace-nowrap md:w-fit md:flex-none md:px-6!"
+            />
+            <Button
+              text="Винная карта"
+              variant="secondary"
+              className="h-14! flex-1 px-3! whitespace-nowrap md:w-fit md:flex-none md:px-6!"
+            />
+          </AnimatedDiv>
 
         <H2Title
           delay={0.3}
@@ -270,7 +271,8 @@ export default function ChefSignatureDishesSection() {
             на тарелке
           </Paragraph>
         </div>
-      </GridSection>
+        </GridSection>
+      </div>
     </div>
   );
 }

@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className="">
+      <body>
         <Header />
         <div className="h-15 md:h-22.5" />
         {children}

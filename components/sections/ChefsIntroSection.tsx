@@ -5,7 +5,7 @@ import Paragraph from "@/components/ui/Paragraph";
 
 export default function ChefsIntroSection() {
   return (
-    <GridSection className="bg-beige pt-7 text-black md:bg-white md:pt-18 md:pb-30">
+    <GridSection className="bg-beige pt-7 md:bg-white md:pt-18 md:pb-30">
       <AnimatedDiv
         className="md:text-gray hidden md:col-span-4 md:flex md:h-full md:flex-col md:justify-between"
         delay={0.2}

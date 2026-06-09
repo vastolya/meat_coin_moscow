@@ -58,7 +58,7 @@ export default function ChefMasterClassSection() {
         <Image
           src={chefPortraitImage}
           alt="Мехмет Найджи с мясом у открытого огня"
-          className="col-span-5 mb-4 md:mb-0 h-160 rounded-t-full object-cover object-center md:col-span-4"
+          className="col-span-5 mb-4 md:mb-0 h-160 md:h-125 rounded-t-full object-cover object-center md:object-[0%_0%] md:col-span-4"
         />
         <div className="col-span-5 mb-5 md:mb-0">
           <H3Title className="mb-4" delay={0.7}>
@@ -67,7 +67,7 @@ export default function ChefMasterClassSection() {
             -классы в ресторане
             <br className="md:hidden" /> от Мехмета Найджи
           </H3Title>
-          <Paragraph className="mb-2 md:mb-108" delay={0.8}>
+          <Paragraph className="mb-2 md:mb-71" delay={0.8}>
             Формат мастер-классов варьируется
             <br className="md:hidden" /> от индивидуальных занятий
             <br className="md:hidden" /> до корпоративных мероприятий

@@ -9,14 +9,15 @@ import Tag from "@/components/ui/Tag";
 import Telegram from "@/components/ui/Telegram";
 import AnimatedDiv from "../ui/AnimatedDiv";
 import GridSection from "../ui/GridSection";
+import clsx from "clsx";
 
 const phone = "+7 499 283-19-11";
 const moscowMapUrl =
   "https://yandex.ru/map-widget/v1/?um=constructor%3A8fa274675addcb7c5913109f940af88d15084baefad65478edc23090113f6f82&source=constructor";
 
-export default function ContactsSection() {
+export default function ContactsSection({className}: {className?: string}) {
   return (
-    <GridSection className="px-4 pt-0 pb-20 md:px-20 md:pt-16 md:pb-30">
+    <GridSection className={clsx("px-4 pt-0 pb-20 md:px-20 md:pt-16 md:pb-30", className)}>
       <div className="col-span-5 pb-13 md:col-span-8 md:col-start-5 md:pb-11">
         <H2Title delay={0.2} className="mb-2">
           Адрес и контакты

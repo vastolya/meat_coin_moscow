@@ -23,7 +23,7 @@ type StaticImageData = {
   blurDataURL?: string;
 };
 
-type SpecialOffer = {
+type ScheduleEvent = {
   id: string;
   imageSrc: StaticImageData;
   imageAlt: string;
@@ -34,100 +34,82 @@ type SpecialOffer = {
   bookingSeats: string;
   descriptionLabel: string;
   description: string;
-  href: string;
 };
 
-const specialOffers: SpecialOffer[] = [
+const scheduleEvents: ScheduleEvent[] = [
   {
-    id: "gala-dinner-1",
+    id: "gala-dinner",
     imageSrc: specialOfferGalaDinner,
     imageAlt: "Афиша гала-ужина Meat_Coin",
-    title: "Гала-ужин в Миткоин",
-    date: "28 октября в 15:00",
-    bookingDate: "Суббота 28 октября",
-    bookingTime: "15:00–17:00",
+    title: "Гала-ужин в МИТКОИН",
+    date: "26 марта в 19:30",
+    bookingDate: "Четверг 26 марта",
+    bookingTime: "19:30–22:30",
     bookingSeats: "5 мест",
-    descriptionLabel: "Эксклюзивный гала-ужин во МИТКОИН с винами Viña Vik",
+    descriptionLabel: "Эксклюзивный гала-ужин во МИТКОИН с винами Viña Vik",
     description:
       "26 марта Состоится незабываемый гала-ужин в 4 руки от Хайяма Аминова и бренд-шефа Григория Ким при поддержке винторговой компании DP-Trade!",
-    href: "#",
   },
   {
-    id: "gala-dinner-2",
+    id: "ribeye-masterclass",
     imageSrc: specialOfferGalaDinner,
-    imageAlt: "Афиша гала-ужина Meat_Coin",
-    title: "Гала-ужин в Миткоин",
-    date: "28 октября в 15:00",
-    bookingDate: "Суббота 28 октября",
-    bookingTime: "15:00–17:00",
+    imageAlt: "Афиша мастер-класса по рибаю Meat_Coin",
+    title: "Мастер-класс «Искусство рибая»",
+    date: "20 марта в 19:30",
+    bookingDate: "Пятница 20 марта",
+    bookingTime: "19:30–21:30",
     bookingSeats: "5 мест",
-    descriptionLabel: "Эксклюзивный гала-ужин во МИТКОИН с винами Viña Vik",
+    descriptionLabel: "Эксклюзивный гала-ужин во МИТКОИН с винами Viña Vik",
     description:
       "26 марта Состоится незабываемый гала-ужин в 4 руки от Хайяма Аминова и бренд-шефа Григория Ким при поддержке винторговой компании DP-Trade!",
-    href: "#",
   },
   {
-    id: "gala-dinner-3",
+    id: "private-masterclass",
     imageSrc: specialOfferGalaDinner,
-    imageAlt: "Афиша гала-ужина Meat_Coin",
-    title: "Гала-ужин в Миткоин",
-    date: "28 октября в 15:00",
-    bookingDate: "Суббота 28 октября",
-    bookingTime: "15:00–17:00",
+    imageAlt: "Афиша индивидуального мастер-класса Meat_Coin",
+    title: "Индивидуальный мастер-класс",
+    date: "20 марта в 19:30",
+    bookingDate: "Пятница 20 марта",
+    bookingTime: "19:30–21:30",
     bookingSeats: "5 мест",
-    descriptionLabel: "Эксклюзивный гала-ужин во МИТКОИН с винами Viña Vik",
+    descriptionLabel: "Эксклюзивный гала-ужин во МИТКОИН с винами Viña Vik",
     description:
       "26 марта Состоится незабываемый гала-ужин в 4 руки от Хайяма Аминова и бренд-шефа Григория Ким при поддержке винторговой компании DP-Trade!",
-    href: "#",
-  },
-  {
-    id: "gala-dinner-4",
-    imageSrc: specialOfferGalaDinner,
-    imageAlt: "Афиша гала-ужина Meat_Coin",
-    title: "Гала-ужин в Миткоин",
-    date: "28 октября в 15:00",
-    bookingDate: "Суббота 28 октября",
-    bookingTime: "15:00–17:00",
-    bookingSeats: "5 мест",
-    descriptionLabel: "Эксклюзивный гала-ужин во МИТКОИН с винами Viña Vik",
-    description:
-      "26 марта Состоится незабываемый гала-ужин в 4 руки от Хайяма Аминова и бренд-шефа Григория Ким при поддержке винторговой компании DP-Trade!",
-    href: "#",
   },
 ];
 
 function BookingSideOverlay({
-  offer,
+  event,
   onClose,
 }: {
-  offer: SpecialOffer | null;
+  event: ScheduleEvent | null;
   onClose: () => void;
 }) {
-  const isOpen = Boolean(offer);
+  const isOpen = Boolean(event);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (submitEvent: FormEvent<HTMLFormElement>) => {
+    submitEvent.preventDefault();
   };
 
   return (
     <SlideModal
       isOpen={isOpen}
       onClose={onClose}
-      ariaLabel={offer ? `Запись на событие: ${offer.title}` : undefined}
+      ariaLabel={event ? `Запись на событие: ${event.title}` : undefined}
     >
-      {offer && (
+      {event && (
         <div className="flex min-h-[calc(100dvh-3.25rem)] flex-col pt-6 md:min-h-[calc(100dvh-9rem)] md:pt-0">
           <div>
             <H2Title className="mb-4" disableAnimation>
-              {offer.title}
+              {event.title}
             </H2Title>
 
             <Paragraph className="text-gray mb-2" disableAnimation>
-              {offer.descriptionLabel}
+              {event.descriptionLabel}
             </Paragraph>
 
             <Paragraph className="" disableAnimation>
-              {offer.description}
+              {event.description}
             </Paragraph>
           </div>
 
@@ -136,14 +118,14 @@ function BookingSideOverlay({
             onSubmit={handleSubmit}
           >
             <div className="mb-11 flex flex-col gap-7 md:mb-7 md:flex-row md:items-end md:justify-between md:gap-10">
-              <BookingDateLabel value={offer.bookingDate} />
+              <BookingDateLabel value={event.bookingDate} />
 
               <div className="bg-beige relative w-fit self-start rounded-sm px-4 py-4 md:self-auto">
                 <span className="border-beige absolute -top-5 left-1/2 -translate-x-1/2 rounded-sm border bg-white px-2 py-1 text-base leading-none whitespace-nowrap text-(--color-accent)">
-                  {offer.bookingSeats}
+                  {event.bookingSeats}
                 </span>
                 <span className="text-2xl leading-none font-extrabold whitespace-nowrap text-(--color-accent)">
-                  {offer.bookingTime}
+                  {event.bookingTime}
                 </span>
               </div>
             </div>
@@ -201,32 +183,32 @@ function BookingDateLabel({ value }: { value: string }) {
   );
 }
 
-function SpecialOfferCard({
-  offer,
+function ScheduleEventCard({
+  event,
   index,
   onSignupClick,
 }: {
-  offer: SpecialOffer;
+  event: ScheduleEvent;
   index: number;
   onSignupClick: () => void;
 }) {
   const baseDelay = 0.2 + index * 0.12;
 
   return (
-    <article className="border-devider col-span-5 grid grid-cols-5 gap-2 border-b py-4 md:col-span-12 md:grid-cols-12 md:gap-7 md:pt-0 md:pb-4">
+    <article className="border-devider col-span-5 grid grid-cols-5 gap-2 border-b py-4 md:col-span-12 md:-mt-3 md:grid-cols-12 md:gap-7 md:pt-0 md:pb-4">
       <AnimatedImage
-        src={offer.imageSrc}
-        alt={offer.imageAlt}
+        src={event.imageSrc}
+        alt={event.imageAlt}
         delay={baseDelay}
-        className="col-span-5 mb-4 h-86 w-86 overflow-hidden rounded-sm md:col-span-3 md:mb-0 md:-mt-3 md:h-75 md:w-75"
+        className="col-span-5 mb-4 h-86 w-86 overflow-hidden rounded-sm md:col-span-3 d:mb-0 md:h-75 md:w-75"
       />
 
-      <div className="col-span-5 md:col-span-3 md:col-start-5 md:flex md:flex-col md:items-start">
+      <div className="col-span-5 md:col-span-4 md:col-start-5 md:flex md:flex-col md:items-start">
         <H3Title delay={baseDelay + 0.05} className="mb-2 md:mb-2">
-          {offer.title}
+          {event.title}
         </H3Title>
         <AnimatedDiv delay={baseDelay + 0.1} className="mb-7 md:mb-0">
-          <Tag text={offer.date} variant="gray" />
+          <Tag text={event.date} variant="gray" />
         </AnimatedDiv>
       </div>
 
@@ -235,14 +217,14 @@ function SpecialOfferCard({
           delay={baseDelay + 0.1}
           className="hidden text-(--color-gray) md:mb-2 md:block"
         >
-          {offer.descriptionLabel}
+          {event.descriptionLabel}
         </Paragraph>
 
         <Paragraph
           delay={baseDelay + 0.15}
           className="hidden md:mb-7 md:block md:max-w-97.25"
         >
-          {offer.description}
+          {event.description}
         </Paragraph>
 
         <button
@@ -262,48 +244,36 @@ function SpecialOfferCard({
   );
 }
 
-export default function SpecialOffersSection() {
-  const [selectedOffer, setSelectedOffer] = useState<SpecialOffer | null>(null);
+export default function ChefsScheduleSection() {
+  const [selectedEvent, setSelectedEvent] = useState<ScheduleEvent | null>(
+    null,
+  );
 
   return (
-    <>
-      <GridSection className="mt-12 mb-12 md:mt-30 md:mb-0 md:px-20">
-        <Paragraph
-          delay={0.2}
-          className="text-gray col-span-5 mb-2 md:col-span-4"
-        >
-          Особые моменты
-        </Paragraph>
-
-        <div className="contents md:col-span-8 md:col-start-5 md:flex md:w-117.5 md:flex-col md:gap-2">
+    <div className="bg-dark text-white">
+      <GridSection className="py-12 pb-12 md:px-20 md:py-30 md:pb-0">
+        <div className="contents md:col-span-8 md:col-start-5 md:flex md:flex-col md:gap-2">
           <H2Title delay={0.2} className="col-span-5 mb-4 md:mb-2">
-            Спецпредложения
+            Расписание и бронирование
           </H2Title>
 
-          <Paragraph delay={0.2} className="col-span-5 mb-2">
-            Дегустационный сет «Загородный» — дает возможность за один вечер
-            исследовать разные текстуры и техники
-          </Paragraph>
-
-          <Paragraph delay={0.2} className="col-span-5 mb-9 md:mb-14">
-            Также мы проводим закрытые гастроужины,
-            <br className="hidden md:block" /> где шеф представляет новые
-            авторские позиции
+          <Paragraph delay={0.2} className="text-gray col-span-5 mb-9 md:mb-12">
+            Ближайшие мастер-классы по стейкам в Москве и график шоу
           </Paragraph>
         </div>
 
-        {specialOffers.map((offer, index) => (
-          <SpecialOfferCard
-            key={offer.id}
-            offer={offer}
+        {scheduleEvents.map((event, index) => (
+          <ScheduleEventCard
+            key={event.id}
+            event={event}
             index={index}
-            onSignupClick={() => setSelectedOffer(offer)}
+            onSignupClick={() => setSelectedEvent(event)}
           />
         ))}
 
         <AnimatedDiv
           delay={0.2}
-          className="md:items-cente col-span-5 mt-9 flex flex-col gap-2 md:col-span-8 md:col-start-5 md:mt-18 md:flex-row md:justify-center md:gap-4"
+          className="md:items-cente col-span-5 mt-9 flex flex-col gap-2 md:col-span-8 md:col-start-5 md:mt-11 md:flex-row md:justify-center md:gap-4"
         >
           <Button
             text="Все события"
@@ -311,15 +281,15 @@ export default function SpecialOffersSection() {
             className="w-full text-white md:w-102"
           />
           <Paragraph disableAnimation className="text-gray md:w-75">
-            Информация о ближайших событиях появится здесь
+            Информация о ближайших событиях появится здесь
           </Paragraph>
         </AnimatedDiv>
       </GridSection>
 
       <BookingSideOverlay
-        offer={selectedOffer}
-        onClose={() => setSelectedOffer(null)}
+        event={selectedEvent}
+        onClose={() => setSelectedEvent(null)}
       />
-    </>
+    </div>
   );
 }

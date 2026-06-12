@@ -12,6 +12,7 @@ import Image from "next/image";
 import AnimatedDiv from "../ui/AnimatedDiv";
 import GridSection from "../ui/GridSection";
 import H3Title from "../ui/H3Title";
+import HorizontalDragScroller from "../ui/HorizontalDragScroller";
 
 const cutTags = ["Рибай на кости", "Нью-Йорк", "Филе-миньон", "Вагю"];
 
@@ -46,6 +47,36 @@ const butcherPhotos = [
     src: butcherShopWagyu,
     alt: "Премиальная говядина Meat_Coin",
   },
+  {
+    id: "butcher-shop-4",
+    src: butcherShopRibeye,
+    alt: "Отруб мраморной говядины Meat_Coin",
+  },
+  {
+    id: "butcher-shop-5",
+    src: butcherShopSteak,
+    alt: "Стейк из мясной лавки Meat_Coin",
+  },
+  {
+    id: "butcher-shop-6",
+    src: butcherShopWagyu,
+    alt: "Премиальная говядина Meat_Coin",
+  },
+  {
+    id: "butcher-shop-4",
+    src: butcherShopRibeye,
+    alt: "Отруб мраморной говядины Meat_Coin",
+  },
+  {
+    id: "butcher-shop-5",
+    src: butcherShopSteak,
+    alt: "Стейк из мясной лавки Meat_Coin",
+  },
+  {
+    id: "butcher-shop-6",
+    src: butcherShopWagyu,
+    alt: "Премиальная говядина Meat_Coin",
+  },
 ];
 
 export default function ButcherShopSection() {
@@ -53,10 +84,10 @@ export default function ButcherShopSection() {
     <GridSection className="-mx-4 px-4 py-12 md:py-30">
       <H2Title
         delay={0.3}
-        className="order-1 col-span-5 mb-4 md:order-2 md:col-span-8 md:col-start-5 md:mb-18"
+        className="order-1 col-span-5 mb-4 md:order-2 md:col-span-8 md:col-start-5 md:mb-11"
       >
-        <span className="text-(--color-accent)">Мясная лавка</span> Выберите
-        свой идеальный стейк
+        <span className="text-accent">Мясная лавка</span> Выберите свой
+        идеальный стейк
       </H2Title>
 
       <Tag
@@ -97,30 +128,31 @@ export default function ButcherShopSection() {
           домашний опыт достиг ресторанного уровня
         </Paragraph>
 
-        <AnimatedDiv delay={1.15} className="mb-9 md:mb-18">
+        <AnimatedDiv delay={1.15} className="mb-9 md:mb-11">
           <Button
             text="Заказать с доставкой"
             variant="secondary"
-            className="w-full border-(--color-accent)! text-white hover:border-(--color-accent)!"
+            className="border-accent! hover:border-accent! w-full text-white"
           />
         </AnimatedDiv>
       </div>
 
-      <div className="no-scrollbar order-4 col-span-5 -mr-4 flex snap-x snap-mandatory gap-2 overflow-x-auto md:col-span-12 md:-mx-20 md:mt-1 md:gap-7">
+      <HorizontalDragScroller className="no-scrollbar order-4 col-span-5 -mr-4 flex snap-x snap-mandatory gap-2 overflow-x-auto md:relative md:left-1/2 md:col-span-12 md:mt-1 md:w-screen md:-translate-x-1/2 md:gap-7">
         {butcherPhotos.map((photo, index) => (
           <AnimatedDiv
             key={photo.id}
-            delay={1.3 + index * 0.08}
+            delay={0.3 + index * 0.08}
             className="shrink-0 snap-center"
           >
             <Image
               src={photo.src}
               alt={photo.alt}
-              className="h-72 w-72 rounded-sm object-cover md:h-85 md:w-85"
+              draggable={false}
+              className="h-75 w-75 rounded-sm object-cover"
             />
           </AnimatedDiv>
         ))}
-      </div>
+      </HorizontalDragScroller>
     </GridSection>
   );
 }

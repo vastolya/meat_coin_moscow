@@ -1,4 +1,5 @@
 import ChefMasterClassSection from "@/components/sections/ChefMasterClassSection";
+import ChefsArchiveSection from "@/components/sections/ChefsArchiveSection";
 import ChefSignatureDishesSection from "@/components/sections/ChefSignatureDishesSection";
 import ChefsIntroSection from "@/components/sections/ChefsIntroSection";
 import ChefsPathSection from "@/components/sections/ChefsPathSection";
@@ -17,10 +18,9 @@ export default function ChefsPage() {
       <ChefsPathSection />
       <ChefSignatureDishesSection />
       <ChefMasterClassSection />
+      <ChefsArchiveSection />
       <ChefsScheduleSection />
-      <div className="bg-dark pt-14 text-white">
-        <ContactsSection />
-      </div>
+      <ContactsSection />
     </main>
   );
 }

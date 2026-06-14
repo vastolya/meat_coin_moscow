@@ -11,11 +11,14 @@ export type PhotoSlide = {
   id?: string;
   src: StaticImageData;
   alt: string;
+  className?: string;
   badge?: string;
   title?: string;
   description?: string;
   descriptionClassName?: string;
   description2?: string;
+  imgClassName?: string;
+  imgWrapperClassName?: string;
 };
 
 type PhotoSliderProps = {
@@ -27,6 +30,7 @@ type PhotoSliderProps = {
   slideClassName?: string;
   scrollerClassName?: string;
   indicatorsClassName?: string;
+  indicatorCount?: number;
   indicatorTone?: "light" | "grey";
   useIntrinsicImageSize?: boolean;
 };
@@ -40,6 +44,7 @@ const PhotoSlider = ({
   slideClassName,
   scrollerClassName,
   indicatorsClassName,
+  indicatorCount,
   indicatorTone = "light",
   useIntrinsicImageSize = false,
 }: PhotoSliderProps) => {
@@ -48,6 +53,7 @@ const PhotoSlider = ({
   const [usesDesktopSlides, setUsesDesktopSlides] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const activeSlides = usesDesktopSlides && desktopSlides ? desktopSlides : slides;
+  const visibleIndicatorCount = indicatorCount ?? activeSlides.length;
 
   useEffect(() => {
     if (!desktopSlides) {
@@ -93,7 +99,15 @@ const PhotoSlider = ({
       }
 
       if (container.scrollLeft >= maxScrollLeft - 1) {
-        setActiveIndex(activeSlides.length - 1);
+        setActiveIndex(visibleIndicatorCount - 1);
+        return;
+      }
+
+      if (indicatorCount) {
+        const progress = container.scrollLeft / maxScrollLeft;
+        const progressIndex = Math.round(progress * (indicatorCount - 1));
+
+        setActiveIndex(Math.min(Math.max(progressIndex, 0), indicatorCount - 1));
         return;
       }
 
@@ -140,20 +154,39 @@ const PhotoSlider = ({
       container.removeEventListener("scroll", updateActiveSlide);
       window.removeEventListener("resize", updateActiveSlide);
     };
-  }, [activeSlides, activeSlides.length, useIntrinsicImageSize]);
+  }, [
+    activeSlides,
+    activeSlides.length,
+    indicatorCount,
+    useIntrinsicImageSize,
+    visibleIndicatorCount,
+  ]);
 
   const scrollToSlide = (index: number) => {
     const container = containerRef.current;
     const slide = slideRefs.current[index];
 
-    if (!container || !slide) {
+    if (!container || (!slide && !indicatorCount)) {
+      return;
+    }
+
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+    if (indicatorCount) {
+      container.scrollTo({
+        left: (maxScrollLeft * index) / Math.max(indicatorCount - 1, 1),
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    if (!slide) {
       return;
     }
 
     const containerRect = container.getBoundingClientRect();
     const slideRect = slide.getBoundingClientRect();
     const slideStart = slideRect.left - containerRect.left + container.scrollLeft;
-    const maxScrollLeft = container.scrollWidth - container.clientWidth;
     const targetScrollLeft = useIntrinsicImageSize
       ? (maxScrollLeft * index) / Math.max(activeSlides.length - 1, 1)
       : slideStart - container.clientWidth / 2 + slideRect.width / 2;
@@ -197,12 +230,13 @@ const PhotoSlider = ({
             ref={(element) => {
               slideRefs.current[index] = element;
             }}
-            className={slideBaseClass}
+            className={clsx(slideBaseClass, slide.className)}
           >
             <div
               className={clsx(
                 "relative overflow-hidden rounded-sm",
                 imgWrapperClassName,
+                slide.imgWrapperClassName,
               )}
             >
               <Image
@@ -214,6 +248,7 @@ const PhotoSlider = ({
                   useIntrinsicImageSize &&
                     "md:h-(--slide-height) md:w-(--slide-width)",
                   imgClassName,
+                  slide.imgClassName,
                 )}
               />
               {slide.badge ? (
@@ -253,9 +288,9 @@ const PhotoSlider = ({
           indicatorsClassName,
         )}
       >
-        {activeSlides.map((slide, index) => (
+        {Array.from({ length: visibleIndicatorCount }, (_, index) => (
           <button
-            key={`indicator-${slide.id ?? `${slide.alt}-${index}`}`}
+            key={`indicator-${index}`}
             type="button"
             aria-label={`Перейти к слайду ${index + 1}`}
             onClick={() => scrollToSlide(index)}

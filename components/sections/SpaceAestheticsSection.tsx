@@ -2,6 +2,13 @@ import H2Title from "@/components/ui/H2Title";
 import Paragraph from "@/components/ui/Paragraph";
 import PhotoSlider from "@/components/ui/PhotoSlider";
 import spaceAestheticsBuildingView from "@/public/space-aesthetics-building-view.webp";
+import spaceAestheticsDesktopBuildingView from "@/public/space-aesthetics-desktop-building-view.webp";
+import spaceAestheticsDesktopDiningHall from "@/public/space-aesthetics-desktop-dining-hall.webp";
+import spaceAestheticsDesktopLiveEdgeTable from "@/public/space-aesthetics-desktop-live-edge-table.webp";
+import spaceAestheticsDesktopTerracePanorama from "@/public/space-aesthetics-desktop-terrace-panorama.webp";
+import spaceAestheticsDesktopTerraceTable from "@/public/space-aesthetics-desktop-terrace-table.webp";
+import spaceAestheticsDesktopTerraceWide from "@/public/space-aesthetics-desktop-terrace-wide.webp";
+import spaceAestheticsDesktopWindowTables from "@/public/space-aesthetics-desktop-window-tables.webp";
 import spaceAestheticsDiningHall from "@/public/space-aesthetics-dining-hall.webp";
 import spaceAestheticsLiveEdgeTable from "@/public/space-aesthetics-live-edge-table.webp";
 import spaceAestheticsTerracePanorama from "@/public/space-aesthetics-terrace-panorama.webp";
@@ -49,6 +56,44 @@ const spaceSlides = [
   },
 ];
 
+const desktopSpaceSlides = [
+  {
+    id: "space-desktop-building-view",
+    src: spaceAestheticsDesktopBuildingView,
+    alt: "Вид на здание МИД с панорамной террасы Meat_Coin",
+  },
+  {
+    id: "space-desktop-terrace-wide",
+    src: spaceAestheticsDesktopTerraceWide,
+    alt: "Панорамная терраса Meat_Coin с видом на город",
+  },
+  {
+    id: "space-desktop-terrace-table",
+    src: spaceAestheticsDesktopTerraceTable,
+    alt: "Сервированный стол на террасе Meat_Coin",
+  },
+  {
+    id: "space-desktop-terrace-panorama",
+    src: spaceAestheticsDesktopTerracePanorama,
+    alt: "Терраса Meat_Coin с панорамным видом",
+  },
+  {
+    id: "space-desktop-dining-hall",
+    src: spaceAestheticsDesktopDiningHall,
+    alt: "Обеденный зал Meat_Coin с деревянными столами",
+  },
+  {
+    id: "space-desktop-window-tables",
+    src: spaceAestheticsDesktopWindowTables,
+    alt: "Столы Meat_Coin у панорамных окон",
+  },
+  {
+    id: "space-desktop-live-edge-table",
+    src: spaceAestheticsDesktopLiveEdgeTable,
+    alt: "Длинный деревянный стол в интерьере Meat_Coin",
+  },
+];
+
 export default function SpaceAestheticsSection() {
   return (
     <GridSection className="-mx-4 px-4 pt-11 md:pt-30">
@@ -79,11 +124,11 @@ export default function SpaceAestheticsSection() {
       >
         <PhotoSlider
           slides={spaceSlides}
+          desktopSlides={desktopSpaceSlides}
           useIntrinsicImageSize
           scrollerClassName="md:items-end"
           slideClassName="flex flex-col justify-end md:max-w-none"
           indicatorsClassName="justify-start"
-          imgClassName="h-full md:h-(--slide-height)"
         />
       </AnimatedDiv>
     </GridSection>

@@ -20,6 +20,7 @@ export type PhotoSlide = {
 
 type PhotoSliderProps = {
   slides: PhotoSlide[];
+  desktopSlides?: PhotoSlide[];
   className?: string;
   imgClassName?: string;
   imgWrapperClassName?: string;
@@ -32,6 +33,7 @@ type PhotoSliderProps = {
 
 const PhotoSlider = ({
   slides,
+  desktopSlides,
   className,
   imgClassName,
   imgWrapperClassName,
@@ -43,7 +45,32 @@ const PhotoSlider = ({
 }: PhotoSliderProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [usesDesktopSlides, setUsesDesktopSlides] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeSlides = usesDesktopSlides && desktopSlides ? desktopSlides : slides;
+
+  useEffect(() => {
+    if (!desktopSlides) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const updateSlidesVariant = () => {
+      setUsesDesktopSlides(mediaQuery.matches);
+    };
+
+    updateSlidesVariant();
+    mediaQuery.addEventListener("change", updateSlidesVariant);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateSlidesVariant);
+    };
+  }, [desktopSlides]);
+
+  useEffect(() => {
+    slideRefs.current = [];
+    containerRef.current?.scrollTo({ left: 0 });
+  }, [activeSlides]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -55,7 +82,7 @@ const PhotoSlider = ({
     const updateActiveSlide = () => {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
 
-      if (maxScrollLeft <= 0 || slides.length <= 1) {
+      if (maxScrollLeft <= 0 || activeSlides.length <= 1) {
         setActiveIndex(0);
         return;
       }
@@ -66,16 +93,16 @@ const PhotoSlider = ({
       }
 
       if (container.scrollLeft >= maxScrollLeft - 1) {
-        setActiveIndex(slides.length - 1);
+        setActiveIndex(activeSlides.length - 1);
         return;
       }
 
       if (useIntrinsicImageSize) {
         const progress = container.scrollLeft / maxScrollLeft;
-        const progressIndex = Math.round(progress * (slides.length - 1));
+        const progressIndex = Math.round(progress * (activeSlides.length - 1));
 
         setActiveIndex(
-          Math.min(Math.max(progressIndex, 0), slides.length - 1),
+          Math.min(Math.max(progressIndex, 0), activeSlides.length - 1),
         );
         return;
       }
@@ -113,7 +140,7 @@ const PhotoSlider = ({
       container.removeEventListener("scroll", updateActiveSlide);
       window.removeEventListener("resize", updateActiveSlide);
     };
-  }, [slides.length, useIntrinsicImageSize]);
+  }, [activeSlides, activeSlides.length, useIntrinsicImageSize]);
 
   const scrollToSlide = (index: number) => {
     const container = containerRef.current;
@@ -128,7 +155,7 @@ const PhotoSlider = ({
     const slideStart = slideRect.left - containerRect.left + container.scrollLeft;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
     const targetScrollLeft = useIntrinsicImageSize
-      ? (maxScrollLeft * index) / Math.max(slides.length - 1, 1)
+      ? (maxScrollLeft * index) / Math.max(activeSlides.length - 1, 1)
       : slideStart - container.clientWidth / 2 + slideRect.width / 2;
 
     container.scrollTo({
@@ -156,7 +183,7 @@ const PhotoSlider = ({
         ref={containerRef}
         className={scrollerClass}
       >
-        {slides.map((slide, index) => (
+        {activeSlides.map((slide, index) => (
           <div
             key={slide.id ?? `${slide.alt}-${index}`}
             style={
@@ -226,7 +253,7 @@ const PhotoSlider = ({
           indicatorsClassName,
         )}
       >
-        {slides.map((slide, index) => (
+        {activeSlides.map((slide, index) => (
           <button
             key={`indicator-${slide.id ?? `${slide.alt}-${index}`}`}
             type="button"

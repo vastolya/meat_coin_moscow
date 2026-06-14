@@ -1,6 +1,7 @@
 "use client";
 
 import H3Title from "@/components/ui/H3Title";
+import HorizontalDragScroller from "@/components/ui/HorizontalDragScroller";
 import Paragraph from "@/components/ui/Paragraph";
 import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
@@ -52,20 +53,47 @@ const PhotoSlider = ({
     }
 
     const updateActiveSlide = () => {
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+      if (maxScrollLeft <= 0 || slides.length <= 1) {
+        setActiveIndex(0);
+        return;
+      }
+
+      if (container.scrollLeft <= 1) {
+        setActiveIndex(0);
+        return;
+      }
+
+      if (container.scrollLeft >= maxScrollLeft - 1) {
+        setActiveIndex(slides.length - 1);
+        return;
+      }
+
+      if (useIntrinsicImageSize) {
+        const progress = container.scrollLeft / maxScrollLeft;
+        const progressIndex = Math.round(progress * (slides.length - 1));
+
+        setActiveIndex(
+          Math.min(Math.max(progressIndex, 0), slides.length - 1),
+        );
+        return;
+      }
+
       let closestIndex = 0;
       let closestDistance = Number.POSITIVE_INFINITY;
+      const containerRect = container.getBoundingClientRect();
+      const targetPosition = container.scrollLeft + container.clientWidth / 2;
 
       slideRefs.current.forEach((slide, index) => {
         if (!slide) {
           return;
         }
 
-        const targetPosition = useIntrinsicImageSize
-          ? container.scrollLeft
-          : container.scrollLeft + container.clientWidth / 2;
-        const slidePosition = useIntrinsicImageSize
-          ? slide.offsetLeft
-          : slide.offsetLeft + slide.clientWidth / 2;
+        const slideRect = slide.getBoundingClientRect();
+        const slideStart =
+          slideRect.left - containerRect.left + container.scrollLeft;
+        const slidePosition = slideStart + slideRect.width / 2;
         const distance = Math.abs(slidePosition - targetPosition);
 
         if (distance < closestDistance) {
@@ -88,21 +116,45 @@ const PhotoSlider = ({
   }, [slides.length, useIntrinsicImageSize]);
 
   const scrollToSlide = (index: number) => {
-    slideRefs.current[index]?.scrollIntoView({
+    const container = containerRef.current;
+    const slide = slideRefs.current[index];
+
+    if (!container || !slide) {
+      return;
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    const slideRect = slide.getBoundingClientRect();
+    const slideStart = slideRect.left - containerRect.left + container.scrollLeft;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    const targetScrollLeft = useIntrinsicImageSize
+      ? (maxScrollLeft * index) / Math.max(slides.length - 1, 1)
+      : slideStart - container.clientWidth / 2 + slideRect.width / 2;
+
+    container.scrollTo({
+      left: targetScrollLeft,
       behavior: "smooth",
-      block: "nearest",
-      inline: "center",
     });
   };
 
+  const scrollerClass = clsx(
+    "no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 md:mx-0 md:-mr-20 md:gap-7 md:px-0",
+    useIntrinsicImageSize
+      ? "snap-x snap-mandatory md:snap-none"
+      : "snap-x snap-mandatory",
+    scrollerClassName,
+  );
+
+  const slideBaseClass = clsx(
+    "w-[calc(100vw-2rem)] max-w-88 shrink-0 snap-center md:w-auto",
+    slideClassName,
+  );
+
   return (
     <div className={className}>
-      <div
+      <HorizontalDragScroller
         ref={containerRef}
-        className={clsx(
-          "no-scrollbar -mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 md:mx-0 md:-mr-20 md:gap-7 md:px-0",
-          scrollerClassName,
-        )}
+        className={scrollerClass}
       >
         {slides.map((slide, index) => (
           <div
@@ -118,10 +170,7 @@ const PhotoSlider = ({
             ref={(element) => {
               slideRefs.current[index] = element;
             }}
-            className={clsx(
-              "w-[calc(100vw-2rem)] max-w-88 shrink-0 snap-center md:w-auto",
-              slideClassName,
-            )}
+            className={slideBaseClass}
           >
             <div
               className={clsx(
@@ -132,6 +181,7 @@ const PhotoSlider = ({
               <Image
                 src={slide.src}
                 alt={slide.alt}
+                draggable={false}
                 className={clsx(
                   "w-full object-cover",
                   useIntrinsicImageSize &&
@@ -168,7 +218,7 @@ const PhotoSlider = ({
             ) : null}
           </div>
         ))}
-      </div>
+      </HorizontalDragScroller>
 
       <div
         className={clsx(

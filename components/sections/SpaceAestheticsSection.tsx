@@ -83,7 +83,6 @@ export default function SpaceAestheticsSection() {
           scrollerClassName="md:items-end"
           slideClassName="flex flex-col justify-end md:max-w-none"
           indicatorsClassName="justify-start"
-          imgWrapperClassName="h-105 md:h-auto"
           imgClassName="h-full md:h-(--slide-height)"
         />
       </AnimatedDiv>

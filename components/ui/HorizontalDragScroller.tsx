@@ -2,24 +2,29 @@
 
 import clsx from "clsx";
 import {
+  type ForwardedRef,
   type HTMLAttributes,
   type PointerEvent as ReactPointerEvent,
+  forwardRef,
   useEffect,
   useRef,
 } from "react";
 
 type HorizontalDragScrollerProps = HTMLAttributes<HTMLDivElement>;
 
-export default function HorizontalDragScroller({
-  children,
-  className,
-  onPointerDown,
-  onPointerMove,
-  onPointerUp,
-  onPointerCancel,
-  onPointerLeave,
-  ...props
-}: HorizontalDragScrollerProps) {
+function HorizontalDragScroller(
+  {
+    children,
+    className,
+    onPointerDown,
+    onPointerMove,
+    onPointerUp,
+    onPointerCancel,
+    onPointerLeave,
+    ...props
+  }: HorizontalDragScrollerProps,
+  forwardedRef: ForwardedRef<HTMLDivElement>,
+) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const dragStateRef = useRef({
     isDragging: false,
@@ -36,6 +41,19 @@ export default function HorizontalDragScroller({
       }
     };
   }, []);
+
+  const setScrollerRef = (element: HTMLDivElement | null) => {
+    scrollerRef.current = element;
+
+    if (typeof forwardedRef === "function") {
+      forwardedRef(element);
+      return;
+    }
+
+    if (forwardedRef) {
+      forwardedRef.current = element;
+    }
+  };
 
   const stopInertia = () => {
     if (animationFrameRef.current === null) {
@@ -104,7 +122,7 @@ export default function HorizontalDragScroller({
 
   return (
     <div
-      ref={scrollerRef}
+      ref={setScrollerRef}
       className={clsx("cursor-grab select-none active:cursor-grabbing", className)}
       onPointerDown={(event) => {
         onPointerDown?.(event);
@@ -175,3 +193,7 @@ export default function HorizontalDragScroller({
     </div>
   );
 }
+
+export default forwardRef<HTMLDivElement, HorizontalDragScrollerProps>(
+  HorizontalDragScroller,
+);

@@ -14,16 +14,16 @@ export default function ChefsIntroSection() {
           «Мясо — это язык, на котором я говорю с гостями. Моя задача — чтобы
           каждый понял его без слов»
         </Paragraph>
-        <Paragraph className="text-[#BBB6AF]">— Мехмет Найджи</Paragraph>
+        <Paragraph  className="text-[#BBB6AF]">— Мехмет Найджи</Paragraph>
       </AnimatedDiv>
 
       <div className="col-span-5 md:col-span-8">
-        <H1Title className="text-accent" delay={0.4}>
+        <H1Title className="text-accent" delay={{mobile: 0.2, desktop: 0.4}}>
           Мехмет <br className="md:hidden" /> Найджи —<br /> шеф московск
           <br className="md:hidden" />
           ого ресторана Meat_Coin
         </H1Title>
-        <Paragraph className="mt-1 md:mt-2" delay={0.6}>
+        <Paragraph className="mt-1 md:mt-2" delay={0.4}>
           Традиции, шоу и искусство стейка
         </Paragraph>
       </div>

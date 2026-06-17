@@ -1,4 +1,5 @@
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
+import AnimatedImage from "@/components/ui/AnimatedImage";
 import Button from "@/components/ui/Button";
 import GridSection from "@/components/ui/GridSection";
 import H2Title from "@/components/ui/H2Title";
@@ -11,7 +12,7 @@ import lambRackImage from "@/public/chef-signature-lamb-rack.webp";
 import ribeyeImage from "@/public/chef-signature-ribeye.webp";
 import tboneImage from "@/public/chef-signature-tbone.webp";
 import clsx from "clsx";
-import Image, { type StaticImageData } from "next/image";
+import { type StaticImageData } from "next/image";
 import { Fragment, type ReactNode } from "react";
 
 const steakTags = ["Рибай", "Тибон", "Филе Миньон"];
@@ -88,11 +89,11 @@ const desktopSignatureItems: Array<{
     textClassName: "col-span-5 md:col-span-4",
     content: (
       <>
-        <H3Title delay={0.2} className="mb-4">
+        <H3Title delay={0.4} className="mb-4">
           Авторские стейки
         </H3Title>
 
-        <AnimatedDiv delay={0.2} className="mb-4 flex flex-wrap gap-1">
+        <AnimatedDiv delay={0.5} className="mb-4 flex flex-wrap gap-1">
           {steakTags.map((tag) => (
             <Tag key={tag} className="bg-beige! text-accent px-2! py-1!">
               {tag}
@@ -100,17 +101,17 @@ const desktopSignatureItems: Array<{
           ))}
         </AnimatedDiv>
 
-        <Paragraph className="mb-23.5" delay={0.2}>
+        <Paragraph className="mb-23.5" delay={0.6}>
           Визитная карточка шефа — стейки, приготовленные на гриле ручной работы
         </Paragraph>
 
-        <H3Title delay={0.2} className="mb-22.5">
+        <H3Title delay={0.7} className="mb-22.5">
           В их числе
         </H3Title>
-        <Paragraph className="mb-2" delay={0.2}>
+        <Paragraph className="mb-2" delay={0.8}>
           Идеальный баланс мраморной говядины и времени
         </Paragraph>
-        <Paragraph delay={0.2}>
+        <Paragraph delay={0.9}>
           30 дней в камере превращают плотную текстуру в маслянистую нежность, а
           на гриле рождается та самая карамелизированная корочка
         </Paragraph>
@@ -125,13 +126,13 @@ const desktopSignatureItems: Array<{
     textClassName: "md:col-span-4 md:self-end",
     content: (
       <>
-        <Paragraph className="text-accent mb-2" delay={0.2}>
+        <Paragraph className="text-accent mb-2" delay={1}>
           Два стейка в одном нежнейшее филе с одной стороны кости и сочный,
           насыщенный нью-
           <br className="hidden md:block" />
           йорк — с другой
         </Paragraph>
-        <Paragraph delay={0.2}>
+        <Paragraph delay={1.1}>
           Томление на открытом огне делает границу между текстурами почти
           невесомой, а кость отдаёт мясу свой глубокий, благородный аромат
         </Paragraph>
@@ -146,11 +147,11 @@ const desktopSignatureItems: Array<{
     textClassName: "md:col-span-4 md:self-end",
     content: (
       <>
-        <Paragraph className="mb-2" delay={0.2}>
+        <Paragraph className="mb-2" delay={1.2}>
           Этот отруб лишён лишнего жира, но именно поэтому требует особого
           почтения
         </Paragraph>
-        <Paragraph delay={0.2}>
+        <Paragraph delay={1.3}>
           Шеф подаёт его с соусом из чёрного трюфеля, подчёркивая бархатистую
           чистоту вкуса
         </Paragraph>
@@ -175,7 +176,7 @@ export default function ChefSignatureDishesSection() {
       <div className="rounded-t-[60px] bg-white md:rounded-t-[128px]">
         <GridSection className="py-12 md:py-30">
           <AnimatedDiv
-            delay={0.2}
+            delay={{mobile: 1, desktop: 0.2}}
             className="order-8 col-span-5 mt-7 flex flex-row gap-2 md:order-0 md:col-span-4 md:mt-0"
           >
             <Button
@@ -190,87 +191,88 @@ export default function ChefSignatureDishesSection() {
             />
           </AnimatedDiv>
 
-        <H2Title
-          delay={0.3}
-          className="order-1 col-span-5 mb-7 md:order-0 md:col-span-8 md:mb-11"
-        >
-          Фирменные блюда от шефа
-        </H2Title>
-
-        <div className="order-2 col-span-5 md:hidden">
-          <H3Title delay={0.4} className="mb-2">
-            Авторские стейки
-          </H3Title>
-
-          <AnimatedDiv
-            delay={0.5}
-            className="mb-2 flex flex-wrap gap-1 md:mb-4"
+          <H2Title
+            delay={0.3}
+            className="order-1 col-span-5 mb-7 md:order-0 md:col-span-8 md:mb-11"
           >
-            {steakTags.map((tag) => (
-              <Tag key={tag} className="bg-beige! text-accent px-3! py-1!">
-                <span className="text-sm leading-[148%] font-medium">
-                  {tag}
-                </span>
-              </Tag>
-            ))}
+            Фирменные блюда от шефа
+          </H2Title>
+
+          <div className="order-2 col-span-5 md:hidden">
+            <H3Title delay={0.4} className="mb-2">
+              Авторские стейки
+            </H3Title>
+
+            <AnimatedDiv
+              delay={0.5}
+              className="mb-2 flex flex-wrap gap-1 md:mb-4"
+            >
+              {steakTags.map((tag) => (
+                <Tag key={tag} className="bg-beige! text-accent px-3! py-1!">
+                  <span className="text-sm leading-[148%] font-medium">
+                    {tag}
+                  </span>
+                </Tag>
+              ))}
+            </AnimatedDiv>
+            <Paragraph delay={0.6} className="mb-7 md:mb-8">
+              Визитная карточка шефа — стейки, приготовленные на гриле ручной
+              работы
+            </Paragraph>
+          </div>
+
+          <AnimatedDiv delay={0.7} className="order-3 col-span-5 md:hidden">
+            <PhotoSlider
+              slides={mobileSlides}
+              imgWrapperClassName="h-104.5"
+              imgClassName="h-full"
+              indicatorsClassName="justify-start"
+              indicatorTone="grey"
+            />
           </AnimatedDiv>
-          <Paragraph delay={0.6} className="mb-7 md:mb-8">
-            Визитная карточка шефа — стейки, приготовленные на гриле ручной
-            работы
-          </Paragraph>
-        </div>
 
-        <PhotoSlider
-          slides={mobileSlides}
-          className="order-3 col-span-5 md:hidden"
-          imgWrapperClassName="h-104.5"
-          imgClassName="h-full"
-          indicatorsClassName="justify-start"
-          indicatorTone="grey"
-        />
+          <div className="hidden md:contents">
+            {desktopSignatureItems.map((item, index) => (
+              <Fragment key={item.id}>
+                <div className={clsx("flex flex-col", item.textClassName)}>
+                  {item.content}
+                </div>
 
-        <AnimatedDiv delay={0.4} className="hidden md:contents">
-          {desktopSignatureItems.map((item, index) => (
-            <Fragment key={item.id}>
-              <div className={clsx("flex flex-col", item.textClassName)}>
-                {item.content}
-              </div>
-
-              <AnimatedDiv delay={0.4 + index * 0.08} className="col-span-8">
-                <div className="relative overflow-hidden rounded-sm">
-                  <Image
-                    src={item.image}
-                    alt={item.imageAlt}
-                    className="h-120 w-full object-cover"
-                  />
+                <AnimatedImage
+                  src={item.image}
+                  alt={item.imageAlt}
+                  className="col-span-8 h-120 rounded-sm"
+                  imgClsx="object-cover"
+                  sizes="(min-width: 768px) 67vw, 100vw"
+                  delay={0.75 + index * 0.2}
+                >
                   {item.badge ? (
                     <span className="bg-dark/03 absolute bottom-4 left-4 rounded-sm p-4 text-2xl leading-[116%] font-bold text-white backdrop-blur-md">
                       {item.badge}
                     </span>
                   ) : null}
-                </div>
-              </AnimatedDiv>
-            </Fragment>
-          ))}
-        </AnimatedDiv>
+                </AnimatedImage>
+              </Fragment>
+            ))}
+          </div>
 
-        <div className="order-7 col-span-5 mt-8 md:hidden">
-          <Paragraph delay={1.3} className="text-gray md:max-w-76">
-            Мехмет лично контролирует процесс от разделки до финального аккорда
-            на тарелке
-          </Paragraph>
-        </div>
+          <div className="order-7 col-span-5 mt-8 md:hidden">
+            <Paragraph delay={0.8} className="text-gray md:max-w-76">
+              Мехмет лично контролирует процесс от разделки до финального
+              аккорда на тарелке
+            </Paragraph>
+          </div>
 
-        <div className="hidden md:order-8 md:col-span-5 md:col-start-5 md:block">
-          <Paragraph className="mb-2" delay={0.2}>
-            Каждое блюдо является результатом скрупулёзного отбора и понимания
-            того, как подача может превратить ужин в искусство
-          </Paragraph>
-          <Paragraph className="text-gray" delay={0.2}>
-            Мехмет лично контролирует процесс от разделки до финального аккорда
-            на тарелке
-          </Paragraph>
-        </div>
+          <div className="hidden md:order-8 md:col-span-5 md:col-start-5 md:block">
+            <Paragraph className="mb-2" delay={1.55}>
+              Каждое блюдо является результатом скрупулёзного отбора и понимания
+              того, как подача может превратить ужин в искусство
+            </Paragraph>
+            <Paragraph className="text-gray" delay={1.65}>
+              Мехмет лично контролирует процесс от разделки до финального
+              аккорда на тарелке
+            </Paragraph>
+          </div>
         </GridSection>
       </div>
     </div>

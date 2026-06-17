@@ -192,7 +192,7 @@ function ScheduleEventCard({
   index: number;
   onSignupClick: () => void;
 }) {
-  const baseDelay = 0.2 + index * 0.12;
+  const baseDelay = 0.4 + index * 0.35;
 
   return (
     <article className="border-devider col-span-5 grid grid-cols-5 gap-2 border-b py-4 md:col-span-12 md:-mt-3 md:grid-cols-12 md:gap-7 md:pt-0 md:pb-4">
@@ -257,7 +257,7 @@ export default function ChefsScheduleSection() {
             Расписание и бронирование
           </H2Title>
 
-          <Paragraph delay={0.2} className="text-gray col-span-5 mb-9 md:mb-12">
+          <Paragraph delay={0.3} className="text-gray col-span-5 mb-9 md:mb-12">
             Ближайшие мастер-классы по стейкам в Москве и график шоу
           </Paragraph>
         </div>
@@ -272,7 +272,7 @@ export default function ChefsScheduleSection() {
         ))}
 
         <AnimatedDiv
-          delay={0.2}
+          delay={1.55}
           className="md:items-cente col-span-5 mt-9 flex flex-col gap-2 md:col-span-8 md:col-start-5 md:mt-11 md:flex-row md:justify-center md:gap-4"
         >
           <Button

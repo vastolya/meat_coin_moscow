@@ -1,3 +1,4 @@
+import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import H2Title from "@/components/ui/H2Title";
 import PhotoSlider, { type PhotoSlide } from "@/components/ui/PhotoSlider";
 import chefArchiveAvatar from "@/public/chef-archive-avatar.webp";
@@ -108,7 +109,7 @@ const desktopArchiveSlides: PhotoSlide[] = [
     id: "chef-portrait-desktop",
     src: chefArchiveEventChefPortrait,
     alt: "Шеф Мехмет Найджи готовит блюдо",
-    imgClassName: "md:h-[688px]",
+    imgClassName: "md:h-[476px]",
   },
   {
     id: "rib-rack-desktop",
@@ -142,33 +143,43 @@ export default function ChefsArchiveSection() {
         </H2Title>
 
         <div className="col-span-5 mb-9 flex md:absolute md:top-19 md:right-20">
-          <div className="shadow-avatar-accent relative z-20 h-30 w-30 rounded-full border-4 border-white p-1">
+          <AnimatedDiv
+            delay={0.3}
+            className="shadow-avatar-accent relative z-20 h-30 w-30 rounded-full border-4 border-white p-1"
+          >
             <Image
               src={chefArchiveAvatar}
               alt="Архив мастер-классов Meat_Coin"
               className="h-30 object-cover"
             />
-          </div>
+          </AnimatedDiv>
 
-          <div className="shadow-avatar-accent relative z-10 -ml-6 h-30 w-30 rounded-full border-4 border-white p-1 md:-ml-6">
+          <AnimatedDiv
+            delay={0.4}
+            className="shadow-avatar-accent relative z-10 -ml-6 h-30 w-30 rounded-full border-4 border-white p-1 md:-ml-6"
+          >
             <Image
               src={chefArchiveAvatar}
               alt="Архив мастер-классов Meat_Coin"
               className="h-30 object-cover"
             />
-          </div>
+          </AnimatedDiv>
         </div>
 
-        <PhotoSlider
-          slides={archiveSlides}
-          desktopSlides={desktopArchiveSlides}
-          scrollerClassName="items-end  md:gap-5"
-          slideClassName="max-w-none"
-          indicatorCount={desktopArchiveSlides.length}
-          indicatorsClassName="mt-2 justify-start gap-1"
-          indicatorTone="grey"
-          className="col-span-5 md:col-span-12 md:-mt-52.5"
-        />
+        <AnimatedDiv
+          delay={0.5}
+          className="col-span-5 md:col-span-12 md:-mt-30"
+        >
+          <PhotoSlider
+            slides={archiveSlides}
+            desktopSlides={desktopArchiveSlides}
+            scrollerClassName="items-end md:gap-5"
+            slideClassName="max-w-none"
+            indicatorCount={desktopArchiveSlides.length}
+            indicatorsClassName="mt-2 justify-start gap-1"
+            indicatorTone="grey"
+          />
+        </AnimatedDiv>
       </GridSection>
     </div>
   );

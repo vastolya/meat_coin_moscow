@@ -4,9 +4,8 @@ import Paragraph from "@/components/ui/Paragraph";
 import PhotoSlider from "@/components/ui/PhotoSlider";
 import Tag from "@/components/ui/Tag";
 import privateEventsArchedHall from "@/public/private-events-arched-hall.webp";
-import privateEventsBanquetHall from "@/public/private-events-banquet-hall.webp";
-import privateEventsLounge from "@/public/private-events-lounge.webp";
-import privateEventsTerrace from "@/public/private-events-terrace.webp";
+import privateEventsCourtyardTerrace from "@/public/private-events-courtyard-terrace.webp";
+import privateEventsPrivateDining from "@/public/private-events-private-dining.webp";
 import privateEventsVipTable from "@/public/private-events-vip-table.webp";
 import AnimatedDiv from "../ui/AnimatedDiv";
 import AnimatedImage from "../ui/AnimatedImage";
@@ -22,18 +21,13 @@ const celebrationSlides = [
   },
   {
     id: "celebration-2",
-    src: privateEventsBanquetHall,
-    alt: "Интерьер зала Meat_Coin для частных мероприятий",
+    src: privateEventsPrivateDining,
+    alt: "Приватный зал Meat_Coin для частного ужина",
   },
   {
     id: "celebration-3",
-    src: privateEventsTerrace,
+    src: privateEventsCourtyardTerrace,
     alt: "Терраса Meat_Coin для частных мероприятий",
-  },
-  {
-    id: "celebration-4",
-    src: privateEventsLounge,
-    alt: "Приватное пространство Meat_Coin для торжеств",
   },
 ];
 
